@@ -1,0 +1,36 @@
+.illustration {
+    position: relative;
+    width: 800px;
+    margin: auto;
+}
+
+.background {
+    width: 100%;
+    z-index: -1;
+}
+
+
+.zone:hover {
+    transform: scale(1.05);
+}
+
+/* positions des zones */
+
+.panneau {
+    top: 2128px;
+    left: 2781px;
+    width: 180px;
+    z-index: 1;
+}
+
+/* .zone2 {
+    top: 300px;
+    left: 400px;
+    width: 90px;
+}
+
+.zone3 {
+    top: 220px;
+    left: 600px;
+    width: 70px;
+} */

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=*, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="background">
+        <img src="../accueil_interactif/Images/place.PNG" class="background">
+
+
+        <div class="echoppe">
+            <img src="../accueil_interactif/Images/panneau_place.PNG" class="panneau">
+            <!--         <img src="objet2.png" class="zone zone2">
+        <img src="objet3.png" class="zone zone3"> -->
+        </div>
+
+        <div id="overlay" class="overlay">
+            <div class="popup">
+                <h2 id="title"></h2>
+                <p id="content"></p>
+                <button onclick="closeOverlay()">Fermer</button>
+            </div>
+        </div>
+
+        <script>
+
+            const overlay = document.getElementById("overlay")
+            const title = document.getElementById("title")
+            const content = document.getElementById("content")
+
+            function openOverlay(t, c) {
+                title.innerText = t
+                content.innerText = c
+                overlay.style.display = "flex"
+            }
+
+            function closeOverlay() {
+                overlay.style.display = "none"
+            }
+
+            document.querySelector(".panneau").onclick = () => {
+                openOverlay("Objet 1", "Description objet 1")
+            }
+
+            document.querySelector(".zone2").onclick = () => {
+                window.location.href = "/page-objet2"
+            }
+            document.addEventListener("mousemove", e => console.log(e.offsetX, e.offsetY))
+
+        </script>
+</body>
+
+</html>

@@ -1,27 +1,42 @@
-.illustration {
+.image {
     position: relative;
-    width: 800px;
-    margin: auto;
-}
-
-.background {
     width: 100%;
-    z-index: -1;
+
+}
+
+.image img{
+    width: 100%;
+    
+}
+.background {
+    position: relative;
+    width: 100%;
+    z-index: -10;
+}
+
+.panneau {
+    position: absolute;
+    left: 50.25%;
+    top: 59.50%;
+    width: 13.2% !important;
+    z-index: 0;
+    transition: transform 0.3s ease; 
+    cursor: pointer; 
+
 }
 
 
-.zone:hover {
-    transform: scale(1.05);
+.panneau:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 10px 35px #741A29)
+    ;
 }
+
+
+
 
 /* positions des zones */
 
-.panneau {
-    top: 2128px;
-    left: 2781px;
-    width: 180px;
-    z-index: 1;
-}
 
 /* .zone2 {
     top: 300px;
@@ -34,3 +49,39 @@
     left: 600px;
     width: 70px;
 } */
+
+
+
+
+
+
+
+
+
+
+
+
+.container {
+    position: relative;
+    width: 800px;
+    margin: auto;
+}
+
+.container img {
+    width: 100%;
+    display: block;
+}
+
+.marker {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: red;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.coords {
+    margin-top: 20px;
+    font-family: monospace;
+}

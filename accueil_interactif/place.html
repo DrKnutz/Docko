@@ -10,13 +10,11 @@
 
 <body>
     <div class="background">
-        <img src="../accueil_interactif/Images/place.PNG" class="background">
-
+        <img src="../accueil_interactif/Images/place.PNG" usemap="#map1">
 
         <div class="echoppe">
-            <img src="../accueil_interactif/Images/panneau_place.PNG" class="panneau">
             <!--         <img src="objet2.png" class="zone zone2">
-        <img src="objet3.png" class="zone zone3"> -->
+                         <img src="objet3.png" class="zone zone3"> -->
         </div>
 
         <div id="overlay" class="overlay">
@@ -27,7 +25,46 @@
             </div>
         </div>
 
+
         <script>
+/* /* 
+
+Script pour le marqueur. celui-ci me permet de récupérer les coordonnées des objets et les %. Un point rouge m'indique l'emplacement avec les coordonnées en dessous de l'image.
+
+const container = document.getElementById("map")
+const coordsBox = document.getElementById("coords")
+
+container.addEventListener("click", function(e){
+
+const rect = container.getBoundingClientRect()
+
+const x = e.clientX - rect.left
+const y = e.clientY - rect.top
+
+const percentX = (x / rect.width * 100).toFixed(2)
+const percentY = (y / rect.height * 100).toFixed(2) */
+
+/* code du marqueur visuel  */
+
+/* const marker = document.createElement("div")
+marker.classList.add("marker")
+
+marker.style.left = percentX + "%"
+marker.style.top = percentY + "%"
+
+container.appendChild(marker) */
+
+/* affichage des coordonnées */
+
+/* coordsBox.innerHTML = `
+Pixels : X ${Math.round(x)} | Y ${Math.round(y)} <br>
+Pourcent : left ${percentX}% | top ${percentY}%
+` 
+
+})  */
+
+
+
 
             const overlay = document.getElementById("overlay")
             const title = document.getElementById("title")

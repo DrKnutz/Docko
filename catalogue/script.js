@@ -30,7 +30,7 @@ Papa.parse(csvUrl, {
                 // image capsule
                 const img = card.querySelector("img");
                 if(img && item.poster){
-                    img.src = "posters/" + id + ".jpg";
+                    img.src = "../posters/" + id + ".jpg";
                 }
 
                 const title = card.querySelector(".Titre");
@@ -74,7 +74,7 @@ Papa.parse(csvUrl, {
             // IMAGE POSTER
     const poster = document.getElementById("poster");
     if(poster){
-        poster.src = "posters/" + item.ID + ".jpg";
+        poster.src = "../posters/" + item.ID + ".jpg";
         poster.alt = item.Titre;
     }
     // LIEN DE VISIONNAGE

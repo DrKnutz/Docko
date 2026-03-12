@@ -71,6 +71,17 @@ Papa.parse(csvUrl, {
                 }
 
             });
+            // IMAGE POSTER
+    const poster = document.getElementById("poster");
+    if(poster){
+        poster.src = "posters/" + item.ID + ".jpg";
+        poster.alt = item.Titre;
+    }
+    // LIEN DE VISIONNAGE
+const watchLink = document.getElementById("watchLink");
+if(watchLink && item.url){
+    watchLink.href = item.url;
+}
 
         }
 

@@ -21,8 +21,9 @@ Papa.parse(csvUrl, {
 
 
             data.forEach(item => {
+                if(catParam==item.Category || catParam==null){
 
-            document.querySelector(".catalogue").innerHTML=`<div class="doc-card" data-id="${item.ID}">
+            document.querySelector(".catalogue").innerHTML+=`<div class="doc-card" data-id="${item.ID}">
     <a>
         <img>
     <div class="overlay">
@@ -59,7 +60,7 @@ Papa.parse(csvUrl, {
                     link.href = "film.html?id=" + item.ID;
                 }
 
-            });
+            }});
 
         }
 

@@ -1,55 +1,77 @@
 .image {
     position: relative;
     width: 100%;
-
 }
 
-.image img{
-    width: 100%;
-    
-}
 .background {
-    position: relative;
     width: 100%;
+    display: block;
     z-index: -10;
 }
 
-.panneau {
+.placement {
     position: absolute;
-    left: 50.25%;
-    top: 59.50%;
-    width: 13.2% !important;
-    z-index: 0;
-    transition: transform 0.3s ease; 
-    cursor: pointer; 
+    left: 0;
+    top: 0%;
+    width: 100%;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 
+    transform-origin: center;
 }
 
+.droite {
+    position: absolute;
+    left: 0;
+    top: 0%;
+    width: 100%;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 
-.panneau:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 10px 35px #741A29)
-    ;
+    transform-origin: right 90%;
 }
 
+/* .objet {
+    position: absolute;
+    left: 0;
+    top: 0%;
+    width: 100%;
+    z-index: 2;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 
-
-
-/* positions des zones */
-
-
-/* .zone2 {
-    top: 300px;
-    left: 400px;
-    width: 90px;
-}
-
-.zone3 {
-    top: 220px;
-    left: 600px;
-    width: 70px;
+    transform-origin: center;
 } */
 
+.objet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.placement:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 10px 35px #741A29);
+}
+
+
+.droite:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 10px 35px #741A29);
+}
+
+.objet:hover {
+    filter: drop-shadow(0 10px 35px #741A29);
+}
+
+.hidden {
+    display: none;
+}
 
 
 

@@ -5,39 +5,45 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style_interactif.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </script>
   <title>Document</title>
 </head>
 
 <body>
   <div class="image">
 
+    <button id="retour" onclick="retour()">Retour</button>
+
+<button id="accueil" onclick="retourAccueil()">Vers le menu</button>
+
     <!-- Place -->
     <img id="1" src="../accueil_interactif/Images/place_vierge_couleur.PNG" class="background">
 
     <!-- politique -->
     <img src="../accueil_interactif/Images/panneau_place.PNG" class="placement clickable-transparency"
-      data-image="../accueil_interactif/Images/Images_pol/panneau_zoom_couleur.png" data-objets="politique" onclick="changerImage(this)">
+      data-image="../accueil_interactif/Images/Images_pol/panneau_zoom_couleur.png" data-objets="politique"
+      onclick="changerImage(this)">
     <!-- Images politique -->
-    <img src="../accueil_interactif/Images/Images_pol/liancourt.PNG" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_pol/liancourt.PNG"
+      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
     <img src="../accueil_interactif/Images/Images_pol/Buma.PNG" class="objet politique clickable-transparency hidden"
       onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_pol/feminisme.PNG" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_pol/feminisme.PNG"
+      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_pol/mouv_saemul.PNG" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_pol/mouv_saemul.PNG"
+      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_pol/revolte_etudiante.PNG" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_pol/revolte_etudiante.PNG"
+      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
     <img src="../accueil_interactif/Images/Images_pol/sewol.PNG" class="objet politique clickable-transparency hidden"
       onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_pol/soulevement.PNG" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_pol/soulevement.PNG"
+      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
 
     <!-- gwangju -->
@@ -69,45 +75,40 @@
 
     <!--  culture  -->
 
-<img src="culture_place.PNG"
-class="placement clickable-transparency"
-data-image="Images_culture/culture_zoom.png"
-data-objets="culture"
-onclick="changerImage(this)">
-
 
     <img src="../accueil_interactif/Images/culture_place.PNG" class="placement clickable-transparency"
-      data-image="../accueil_interactif/Images/Images_culture/culture_zoom.png" data-objets="culture" onclick="changerImage(this)">
+      data-image="../accueil_interactif/Images/Images_culture/culture_zoom.png" data-objets="culture"
+      onclick="changerImage(this)">
     <!-- images culture -->
-    <img src="../accueil_interactif/Images/Images_culture/arirang.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/arirang.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/art_contempo.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/art_contempo.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/calligraphie.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/calligraphie.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/chamanisme.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/chamanisme.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/cinema.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/cinema.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/hanbok.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/hanbok.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/histoire_gout.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/histoire_gout.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/talchum.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/talchum.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
     <img src="../accueil_interactif/Images/Images_culture/trot.PNG" class="objet culture clickable-transparency hidden"
       onclick="ouvrirPopup('Titre', 'Texte')">
 
-    <img src="../accueil_interactif/Images/Images_culture/Yeongdo.PNG" class="objet culture clickable-transparency hidden"
-      onclick="ouvrirPopup('Titre', 'Texte')">
+    <img src="../accueil_interactif/Images/Images_culture/Yeongdo.PNG"
+      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup('Titre', 'Texte')">
 
 
     <!--  lieu de vie  -->
@@ -122,6 +123,75 @@ onclick="changerImage(this)">
       onclick="changerImage(this)">
 
     <!--  social objet -->
+
+  </div>
+
+
+  <div id="overlayPopup">
+
+    <div class="overlay-container">
+
+      <button class="popup-close" onclick="closeOverlay()">✕</button>
+
+      <div class="film-overlay">
+
+        <div class="film-left">
+          <img id="poster">
+
+          <div class="film-tags">
+            <h3>Tags</h3>
+            <span class="tag">Pop-culture</span>
+            <span class="tag">Social</span>
+            <span class="tag">Histoire</span>
+          </div>
+        </div>
+
+        <div class="film-right">
+
+          <h1 id="Titre"></h1>
+          <h2 id="Titre_Kr"></h2>
+
+          <div class="film-details">
+            <span id="Time"></span>
+            <span id="Date"></span>
+          </div>
+
+          <div class="film-synopsis">
+            <p id="Description"></p>
+          </div>
+
+          <div class="film-watch">
+            <a id="watchLink" target="_blank" class="btn-watch">
+              Cliquez ici pour regarder le documentaire
+            </a>
+          </div>
+
+          <div class="film-team">
+            <h3>Équipe</h3>
+
+            <ul class="team-list">
+              <li>Camille VIVIEN</li>
+              <li>Maelys GAILLET</li>
+              <li>Gwenn BESSON</li>
+              <li>Andrea MELIN</li>
+              <li>Lou DE MATTOS</li>
+              <li>Anastasia SHUSHLINA</li>
+              <li>Young-Bin LEE</li>
+              <li>Hyun WOO CHO</li>
+              <li>Yeonghoon LEE</li>
+              <li>Jung IN JAE</li>
+              <li>So Young BYUN</li>
+              <li>Kim BYEONG HO</li>
+              <li>Hyunji KWON</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
@@ -145,24 +215,30 @@ onclick="changerImage(this)">
 
 
 
-
   <script>
 
+let historique = [];
 
 function changerImage(element) {
 
+  let imagePrincipale = document.getElementById("1");
 
-      // Fait disparaitre les échoppes lors du clic
+  // enregistrer l'image actuelle seulement si on est sur la place
+  if (!imagePrincipale.src.includes("zoom")) {
+    historique.push(imagePrincipale.src);
+  }
+
+  // cacher toutes les zones
   let zones = document.querySelectorAll(".placement, .droite, .objet");
   zones.forEach(z => z.classList.add("hidden"));
 
-      // Passe de la place à l'intérieur d'une échoppe
+  // changer l'image
   let nouvelleImage = element.dataset.image;
   if (nouvelleImage) {
-    document.getElementById("1").src = nouvelleImage;
+    imagePrincipale.src = nouvelleImage;
   }
 
-      // affiche les objets à l'intérieur de l'échoppe
+  // afficher les objets du bon groupe
   let groupe = element.dataset.objets;
   if (groupe) {
     let objets = document.querySelectorAll("." + groupe);
@@ -170,6 +246,27 @@ function changerImage(element) {
   }
 
 }
+
+    function retour() {
+
+  if (historique.length === 0) return;
+
+  let imagePrincipale = document.getElementById("1");
+
+  imagePrincipale.src = historique.pop();
+
+  // cacher les objets
+  document.querySelectorAll(".objet").forEach(o => o.classList.add("hidden"));
+
+  // afficher les échoppes
+  document.querySelectorAll(".placement, .droite").forEach(e => e.classList.remove("hidden"));
+
+}
+
+function retourAccueil() {
+  window.location.href = "../index.html";
+}
+
 
 
 
@@ -284,6 +381,32 @@ function changerImage(element) {
         document.addEventListener('touchstart', hitTest, { passive: true });
       }
     })();
+
+
+
+    //Script overlay//
+
+
+    function ouvrirPopup(titre, texte) {
+
+      document.getElementById("overlayPopup").style.display = "flex";
+
+      document.getElementById("popupTitle").textContent = titre;
+      document.getElementById("popupText").textContent = texte;
+
+    }
+
+    function closeOverlay() {
+
+      document.getElementById("overlayPopup").style.display = "none";
+
+    }
+
+
+
+
+
+
 
 
 

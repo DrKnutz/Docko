@@ -11,6 +11,17 @@ Papa.parse(csvUrl, {
     complete: function(results){
 
         const data = results.data;
+        data.sort((a,b) => b.Date - a.Date);
+
+// --- NOUVEAU CODE À AJOUTER POUR LE TITRE H1 ---
+         const titrePage = document.getElementById("categoryTitle");
+         if (titrePage) {
+             if (catParam) {
+                 titrePage.textContent = catParam; 
+             } else {
+                 titrePage.textContent = "Toutes les catégories";
+             }
+        }
 
         // -----------------
         // Affichage CATALOGUE
@@ -21,7 +32,7 @@ Papa.parse(csvUrl, {
 
 
             data.forEach(item => {
-                if(catParam==item.Category || catParam==null){
+                if(catParam==item.Categorie_EIDR || catParam==null){
 
             document.querySelector(".catalogue").innerHTML+=`<div class="doc-card" data-id="${item.ID}">
     <a>
@@ -59,9 +70,14 @@ Papa.parse(csvUrl, {
                 if(link){
                     link.href = "film.html?id=" + item.ID;
                 }
-
+            //             // afficher le titre de la catégorie
+            // const cattitle = document.getElementById("categoryTitle");
+            //     if(cattitle && item.Category){
+            //         cattitle.textContent = item.Category;
+            //     }
             }});
 
-        }
+            }
 
-})
+        }
+);  

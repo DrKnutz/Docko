@@ -1,0 +1,206 @@
+/* OVERLAY */
+
+#overlayPopup {
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,0.85);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 5000;
+}
+
+.overlay-container {
+
+    background: #2B2927;
+    color: #F7EBEB;
+
+    width: 90%;
+    max-width: 1200px;
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border-radius: 12px;
+
+    padding: 60px;
+
+    position: relative;
+}
+
+.film-overlay {
+
+    display: flex;
+    gap: 60px;
+}
+
+/* IMAGE */
+
+.film-left {
+    width: 45%;
+}
+
+.film-left img {
+
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+
+    border-radius: 10px;
+}
+
+.film-right {
+    width: 55%;
+}
+
+#Titre {
+
+    font-size: 42px;
+    color: #FCD135;
+    margin-bottom: 8px;
+}
+
+.film-details {
+
+    font-size: 16px;
+    opacity: 0.8;
+
+    margin-bottom: 30px;
+}
+
+.film-synopsis p {
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+/* TAGS */
+
+.film-tags h3 {
+
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #FCD135;
+}
+
+.tag {
+
+    display: inline-block;
+
+    background: #FCD135;
+    color: black;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    margin-right: 8px;
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+.btn-watch {
+
+    display: inline-block;
+
+    background: #EA770B;
+    color: white;
+
+    padding: 12px 25px;
+
+    border-radius: 25px;
+
+    text-decoration: none;
+
+    margin-bottom: 40px;
+}
+
+.btn-watch:hover {
+
+    background: linear-gradient(135deg,#FCD135,#EA770B);
+    color: black;
+}
+
+.film-team h3 {
+
+    color: #FCD135;
+    margin-bottom: 15px;
+}
+
+.team-list {
+
+    columns: 2;
+
+    list-style: none;
+    padding: 0;
+}
+
+.team-list li {
+
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.popup-close {
+
+    position: absolute;
+
+    top: 20px;
+    right: 30px;
+
+    background: none;
+    border: none;
+
+    font-size: 32px;
+
+    color: white;
+
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+
+    .film-overlay {
+
+        flex-direction: column;
+    }
+
+    .film-left,
+    .film-right {
+
+        width: 100%;
+    }
+
+    .team-list {
+
+        columns: 1;
+    }
+
+    .overlay-container {
+
+        padding: 40px;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #Titre {
+
+        font-size: 32px;
+    }
+
+    #Titre_Kr {
+
+        font-size: 20px;
+    }
+
+}
+/* OVERLAY */

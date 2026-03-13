@@ -2,40 +2,104 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style_interactif.css">
-    <meta name="viewport" content="width=*, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style_interactif.css">
+  <meta name="viewport" content="width=*, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
-    <div class="image">
-        <img id="1" src="../accueil_interactif/Images/place.PNG">
-
-        <div class="echoppe">
-
-            <img src="../accueil_interactif/Images/panneau_place2.png" 
-            class="panneau clickable-transparency"
-             onclick="changerImage()">
-
-        </div>
-
-        <div id="overlay" class="overlay">
-            <div class="popup">
-                <h2 id="title"></h2>
-                <p id="content"></p>
-                <button onclick="closeOverlay()">Fermer</button>
-            </div>
-        </div>
-
-<script>        
+  <div class="image">
+    <img id="1" src="../accueil_interactif/Images/place.PNG" class="background">
 
 
-function changerImage() {
-    document.getElementById("1").src =
-    "../accueil_interactif/Images/panneau_zoom.png";
+    <img src="../accueil_interactif/Images/panneau_place.png" class="placement clickable-transparency"
+      data-image="../accueil_interactif/Images/panneau_zoom.png" onclick="changerImage(this)">
+
+    <img src="../accueil_interactif/Images/Images pol/liancourt.PNG" class="objet clickable-transparency hidden"
+      onclick="ouvrirPopup('Titre', 'Texte')">
+
+    <img src="../accueil_interactif/Images/gwangju_place.PNG" class="placement clickable-transparency"
+      data-image="../accueil_interactif/Images/gwangju_zoom.png" onclick="changerImage(this)">
+
+
+    <img src="../accueil_interactif/Images/influence_place.PNG" class="placement clickable-transparency"
+      onclick="changerImage(this)">
+
+
+    <img src="../accueil_interactif/Images/histoire_place.PNG" class="placement clickable-transparency"
+      onclick="changerImage(this)">
+
+    <img src="../accueil_interactif/Images/nordsud_place.PNG" class="placement clickable-transparency"
+      onclick="changerImage(this)">
+
+    <img src="../accueil_interactif/Images/culture_place.PNG" class="placement clickable-transparency"
+      onclick="changerImage(this)">
+
+    <img src="../accueil_interactif/Images/ldv_place.PNG" class="droite clickable-transparency"
+      onclick="changerImage(this)">
+
+    <img src="../accueil_interactif/Images/social_place.PNG" class="droite clickable-transparency"
+      onclick="changerImage(this)">
+
+  </div>
+
+  <div id="overlay" class="overlay">
+    <div class="popup">
+      <h2 id="title"></h2>
+      <p id="content"></p>
+      <button onclick="closeOverlay()">Fermer</button>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+function changerImage(element) {
+
+  // cacher toutes les zones interactives
+  let zones = document.querySelectorAll(".placement, .droite, .objet");
+  zones.forEach(z => z.classList.add("hidden"));
+
+  // changer l'image de fond
+  let nouvelleImage = element.dataset.image;
+  if (nouvelleImage) {
+    document.getElementById("1").src = nouvelleImage;
+  }
+
+  // afficher les objets du zoom
+  let objets = document.querySelectorAll(".objet");
+  objets.forEach(obj => obj.classList.remove("hidden"));
+
 }
 
+
+    /* function changerImage(element) {
+    
+      let nouvelleImage = element.getAttribute("data-image");
+    
+      document.getElementById("imagePrincipale").src = nouvelleImage;
+    
+    }
+     */
 
 
     /*
@@ -62,121 +126,121 @@ function changerImage() {
  * Note: this is meant for Tumult Hype. 
  */
 
-// Threshold for “transparent enough” (α ≤ 0.1)
-const TRANSPARENCY_THRESHOLD = 0.999;
+    // Threshold for “transparent enough” (α ≤ 0.1)
+const TRANSPARENCY_THRESHOLD = 0.1;;
 
-(function() {
-  const registry = [];
+    (function () {
+      const registry = [];
 
-  // Note: The CanvasSettings object also has a willReadFrequently boolean.
-  // When a CanvasSettings object's willReadFrequently is true, the user agent
-  // may optimize the canvas for readback operations.
-  //
-  // We pass { willReadFrequently: true } to getContext so that reading pixels
-  // back (via getImageData) is as efficient as possible.
-  
-  // 1) Gather every .clickable-transparency and build its off‑screen canvas:
-  document.querySelectorAll('.clickable-transparency').forEach(el => {
-    let src, natW, natH;
+      // Note: The CanvasSettings object also has a willReadFrequently boolean.
+      // When a CanvasSettings object's willReadFrequently is true, the user agent
+      // may optimize the canvas for readback operations.
+      //
+      // We pass { willReadFrequently: true } to getContext so that reading pixels
+      // back (via getImageData) is as efficient as possible.
 
-    if (el.tagName === 'IMG') {
-      src  = el.src;
-      natW = el.naturalWidth;
-      natH = el.naturalHeight;
-    } else {
-      const bg = getComputedStyle(el).backgroundImage.match(/url\(([^)]+)\)/);
-      if (!bg) return;
-      src = bg[1].replace(/['"]/g,'');
-    }
+      // 1) Gather every .clickable-transparency and build its off‑screen canvas:
+      document.querySelectorAll('.clickable-transparency').forEach(el => {
+        let src, natW, natH;
 
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = src;
-    img.onload = () => {
-      const w = natW || img.naturalWidth;
-      const h = natH || img.naturalHeight;
-      const canvas = document.createElement('canvas');
-      canvas.width  = w;
-      canvas.height = h;
-      // create context optimized for frequent readbacks:
-      const ctx = canvas.getContext('2d', { willReadFrequently: true });
-      ctx.drawImage(img, 0, 0, w, h);
-      registry.push({ el, canvas, ctx });
-    };
-  });
+        if (el.tagName === 'IMG') {
+          src = el.src;
+          natW = el.naturalWidth;
+          natH = el.naturalHeight;
+        } else {
+          const bg = getComputedStyle(el).backgroundImage.match(/url\(([^)]+)\)/);
+          if (!bg) return;
+          src = bg[1].replace(/['"]/g, '');
+        }
 
-  // 2) On every pointer/touch event, sample the pixel and toggle pointer-events:
-  function hitTest(e) {
-    const x = e.clientX, y = e.clientY;
-    registry.forEach(({ el, canvas, ctx }) => {
-      const r = el.getBoundingClientRect();
-      if (x < r.left || x > r.right || y < r.top || y > r.bottom) {
-        // outside → restore normal behavior
-        el.style.pointerEvents = 'auto';
-        return;
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.src = src;
+        img.onload = () => {
+          const w = natW || img.naturalWidth;
+          const h = natH || img.naturalHeight;
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          // create context optimized for frequent readbacks:
+          const ctx = canvas.getContext('2d', { willReadFrequently: true });
+          ctx.drawImage(img, 0, 0, w, h);
+          registry.push({ el, canvas, ctx });
+        };
+      });
+
+      // 2) On every pointer/touch event, sample the pixel and toggle pointer-events:
+      function hitTest(e) {
+        const x = e.clientX, y = e.clientY;
+        registry.forEach(({ el, canvas, ctx }) => {
+          const r = el.getBoundingClientRect();
+          if (x < r.left || x > r.right || y < r.top || y > r.bottom) {
+            // outside → restore normal behavior
+            el.style.pointerEvents = 'auto';
+            return;
+          }
+          // inside → map to canvas pixels
+          const px = Math.floor((x - r.left) * canvas.width / r.width);
+          const py = Math.floor((y - r.top) * canvas.height / r.height);
+          const alpha = ctx.getImageData(px, py, 1, 1).data[3] / 255;
+
+          if (alpha <= TRANSPARENCY_THRESHOLD) {
+            el.style.pointerEvents = 'none';   // click falls through
+          } else {
+            el.style.pointerEvents = 'auto';   // click catches here
+          }
+        });
       }
-      // inside → map to canvas pixels
-      const px = Math.floor((x - r.left) * canvas.width  / r.width);
-      const py = Math.floor((y - r.top ) * canvas.height / r.height);
-      const alpha = ctx.getImageData(px, py, 1, 1).data[3] / 255;
 
-      if (alpha <= TRANSPARENCY_THRESHOLD) {
-        el.style.pointerEvents = 'none';   // click falls through
+      // 3) Use Pointer Events where supported (covers mouse/touch), else fall back:
+      if (window.PointerEvent) {
+        document.addEventListener('pointermove', hitTest, { passive: true });
+        document.addEventListener('pointerdown', hitTest, { passive: true });
       } else {
-        el.style.pointerEvents = 'auto';   // click catches here
+        document.addEventListener('touchmove', hitTest, { passive: true });
+        document.addEventListener('touchstart', hitTest, { passive: true });
       }
-    });
-  }
-
-  // 3) Use Pointer Events where supported (covers mouse/touch), else fall back:
-  if (window.PointerEvent) {
-    document.addEventListener('pointermove', hitTest, { passive: true });
-    document.addEventListener('pointerdown', hitTest, { passive: true });
-  } else {
-    document.addEventListener('touchmove', hitTest, { passive: true });
-    document.addEventListener('touchstart', hitTest, { passive: true });
-  }
-})();
+    })();
 
 
 
 
 
-                 /*Script pour le marqueur. celui-ci me permet de récupérer les coordonnées des objets et les %. Un point rouge m'indique l'emplacement avec les coordonnées en dessous de l'image.
+    /*Script pour le marqueur. celui-ci me permet de récupérer les coordonnées des objets et les %. Un point rouge m'indique l'emplacement avec les coordonnées en dessous de l'image.
 */
-/*             const container = document.getElementById("map")
-            const coordsBox = document.getElementById("coords")
+    /*             const container = document.getElementById("map")
+                const coordsBox = document.getElementById("coords")
+    
+                container.addEventListener("click", function (e) {
+    
+                    const rect = container.getBoundingClientRect()
+    
+                    const x = e.clientX - rect.left
+                    const y = e.clientY - rect.top
+    
+                    const percentX = (x / rect.width * 100).toFixed(2)
+                    const percentY = (y / rect.height * 100).toFixed(2)
+     */
+    /* code du marqueur visuel  */
+    /*
+                    const marker = document.createElement("div")
+                    marker.classList.add("marker")
+                    
+                    marker.style.left = percentX + "%"
+                    marker.style.top = percentY + "%"
+                    
+                    container.appendChild(marker)  */
 
-            container.addEventListener("click", function (e) {
+    /* affichage des coordonnées */
+    /*
+                    coordsBox.innerHTML = `
+                    Pixels : X ${Math.round(x)} | Y ${Math.round(y)} <br>
+                    Pourcent : left ${percentX}% | top ${percentY}%
+                    ` 
+                    
+                    })  */
 
-                const rect = container.getBoundingClientRect()
-
-                const x = e.clientX - rect.left
-                const y = e.clientY - rect.top
-
-                const percentX = (x / rect.width * 100).toFixed(2)
-                const percentY = (y / rect.height * 100).toFixed(2)
- */
-                /* code du marqueur visuel  */
-/* 
-                const marker = document.createElement("div")
-                marker.classList.add("marker")
-                
-                marker.style.left = percentX + "%"
-                marker.style.top = percentY + "%"
-                
-                container.appendChild(marker)  */
-
-                /* affichage des coordonnées */
-/* 
-                coordsBox.innerHTML = `
-                Pixels : X ${Math.round(x)} | Y ${Math.round(y)} <br>
-                Pourcent : left ${percentX}% | top ${percentY}%
-                ` 
-                
-                })  */ 
-
-        </script>
+  </script>
 </body>
 
 </html>

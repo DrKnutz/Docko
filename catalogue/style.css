@@ -101,6 +101,8 @@ nav li:hover {
 
 .doc-landing-page {
     margin-top: 90px;
+    padding-left: 45px;
+    padding-right: 45px;
 }
 
 .carousel-track {
@@ -627,7 +629,7 @@ a:hover {
 
 .btn-watch {
     display: inline-block;
-    color: white;
+    color: black;
     text-decoration: none;
     padding: 12px 24px;
     font-size: 16px;
@@ -656,8 +658,9 @@ a:hover {
 /* PAGE CATÉGORIES */
 
 .categories-page {
-    margin-top: 120px;
+    margin-top: 90px;
     padding: 80px;
+    
 }
 
 .page-title {

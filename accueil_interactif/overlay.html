@@ -1,0 +1,96 @@
+
+    <img src="../accueil_interactif/Images/Images pol/liancourt.PNG" 
+    class="objet clickable-transparency hidden"
+    onclick="ouvrirPopup('Titre', 'Texte')">
+
+<!-- overlay -->
+
+<div id="overlayPopup">
+
+    <div class="overlay-container">
+  
+        <button class="popup-close" onclick="closeOverlay()">✕</button>
+  
+        <div class="film-overlay">
+  
+            <div class="film-left">
+                <img id="poster">
+  
+                <div class="film-tags">
+                    <h3>Tags</h3>
+                    <span class="tag">Pop-culture</span>
+                    <span class="tag">Social</span>
+                    <span class="tag">Histoire</span>
+                </div>
+            </div>
+  
+            <div class="film-right">
+  
+                <h1 id="Titre"></h1>
+                <h2 id="Titre_Kr"></h2>
+  
+                <div class="film-details">
+                    <span id="Time"></span>
+                    <span id="Date"></span>
+                </div>
+  
+                <div class="film-synopsis">
+                    <p id="Description"></p>
+                </div>
+  
+                <div class="film-watch">
+                    <a id="watchLink" target="_blank" class="btn-watch">
+                        Cliquez ici pour regarder le documentaire
+                    </a>
+                </div>
+  
+                <div class="film-team">
+                    <h3>Équipe</h3>
+  
+                    <ul class="team-list">
+                        <li>Camille VIVIEN</li>
+                        <li>Maelys GAILLET</li>
+                        <li>Gwenn BESSON</li>
+                        <li>Andrea MELIN</li>
+                        <li>Lou DE MATTOS</li>
+                        <li>Anastasia SHUSHLINA</li>
+                        <li>Young-Bin LEE</li>
+                        <li>Hyun WOO CHO</li>
+                        <li>Yeonghoon LEE</li>
+                        <li>Jung IN JAE</li>
+                        <li>So Young BYUN</li>
+                        <li>Kim BYEONG HO</li>
+                        <li>Hyunji KWON</li>
+                    </ul>
+  
+                </div>
+  
+            </div>
+  
+        </div>
+  
+    </div>
+  
+  </div>
+  
+  
+<!-- overlay -->
+
+<!-- script -->
+
+  function ouvrirPopup(titre, texte) {
+
+    document.getElementById("overlayPopup").style.display = "flex";
+    
+    document.getElementById("popupTitle").textContent = titre;
+    document.getElementById("popupText").textContent = texte;
+    
+    }
+    
+    function closeOverlay() {
+    
+    document.getElementById("overlayPopup").style.display = "none";
+    
+    }
+
+<!-- script -->

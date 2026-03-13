@@ -299,7 +299,7 @@ z-index:9999;
 
 }
 
-/* button{
+button{
   position: fixed; 
   top:20px;
 
@@ -338,7 +338,7 @@ button:hover{
 button:active{
   transform:translate(2px,2px);
   box-shadow:1px 1px 0px #000;
-} */
+} 
 
 
 
@@ -378,58 +378,3 @@ button:active{
 
 
 
-button{
-  position: fixed;
-  top:20px;
-
-  background:#fff6a5; 
-  border:2.5px solid #222;
-
-  padding:12px 22px;
-
-  font-family: "Patrick Hand", cursive;
-  font-size:17px;
-  font-weight:bold;
-
-  color:#222;
-
-  cursor:pointer;
-
-  border-radius:8px 12px 10px 14px; 
-
-  box-shadow:
-  4px 4px 0px #222,
-  6px 6px 12px rgba(0,0,0,0.25);
-
-  transform:rotate(-2deg);
-
-  transition:0.25s;
-
-  z-index:9999; 
-
-
-
-#retour{
-left:20px;
-}
-
-#accueil{
-left:160px;
-transform:rotate(1.5deg);
-}
-
-
-
-button:hover{
-  transform:rotate(0deg) scale(1.05);
-  box-shadow:
-  6px 6px 0px #222,
-  10px 10px 18px rgba(0,0,0,0.35);
-}
-
-
-
-button:active{
-  transform:translate(3px,3px);
-  box-shadow:2px 2px 0px #222;
-}} 

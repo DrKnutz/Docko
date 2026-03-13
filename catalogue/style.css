@@ -101,6 +101,8 @@ nav li:hover {
 
 .doc-landing-page {
     margin-top: 90px;
+    padding-left: 45px;
+    padding-right: 45px;
 }
 
 .carousel-track {
@@ -656,8 +658,9 @@ a:hover {
 /* PAGE CATÉGORIES */
 
 .categories-page {
-    margin-top: 120px;
+    margin-top: 90px;
     padding: 80px;
+    
 }
 
 .page-title {

@@ -3,18 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Liste Complète - Dock'ko</title>
+    <title>Catégorie - Doc'Ko</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
 </head>
-
 <body>
-
     <header id="main-header">
+
         <div class="logo">
-            <a href="catalogue.html">
-                <img src="../docko_logo_blanc.png" alt="Logo DocKo">
-            </a>
+            <img src="../docko_logo_blanc.png" alt="Logo DocKo">
         </div>
 
         <nav>
@@ -29,6 +28,22 @@
         <div class="search">
             <input type="text" placeholder="Rechercher...">
         </div>
+
     </header>
 
-    
+<!-- Container où les cartes seront générées -->
+    <section class="doc-landing-page" style="text-align: center; margin-bottom: 20px;">
+        <h1 style="justify-content: center;" id="categoryTitle"> </h1>
+    </section>
+    <section class="categories-page">
+        <div class="categories-grid catalogue">
+            
+        </div>
+    </section> 
+
+
+<!-- Ton script JS -->
+<script src="list-complete.js"></script>
+
+</body>
+</html>

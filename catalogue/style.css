@@ -30,6 +30,32 @@ body {
     font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
     font-weight: auto;
 }
+/* --- LOADER --- */
+
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #2B2927; /* On utilise le même gris/noir que ton site */
+    z-index: 9999; /* On s'assure qu'il couvre absolument tout */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-title {
+    font-size: 5rem;
+    color: #FCD135; /* Ton jaune */
+    letter-spacing: 8px;
+    margin: 0;
+}
+
+/* On rend le header et les grilles invisibles au départ pour laisser GSAP les faire apparaître */
+#main-header, .doc-landing-page {
+    opacity: 0;
+}
 
 /* HEADER TRANSPARENT */
 

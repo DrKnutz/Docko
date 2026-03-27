@@ -28,6 +28,11 @@ function changerImage(element) {
     objets.forEach(obj => obj.classList.remove("hidden"));
   }
 
+  if (el.classList.contains("hidden")) {
+  el.style.pointerEvents = "none";
+  return;
+}
+
 }
 
     function retour() {

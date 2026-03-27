@@ -1,0 +1,72 @@
+.categories-page {
+    margin-top: 90px;
+    padding: 80px;
+    
+}
+
+.page-title {
+    font-size: 42px;
+    margin-bottom: 60px;
+    color: #FCD135;
+}
+
+/* GRID */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* CARTES */
+
+.category-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+    text-decoration: none;
+}
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    filter: brightness(50%);
+    object-fit: cover;
+    transition: 0.6s ease;
+}
+
+/* OVERLAY */
+
+.category-card .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.category-card h2 {
+    font-size: 24px;
+    color: #FCD135;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+/* HOVER EFFET */
+
+.category-card:hover img {
+    transform: scale(1.1);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card:hover h2 {
+    transform: translateY(-5px);
+}

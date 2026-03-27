@@ -71,6 +71,22 @@ Papa.parse(csvUrl, {
                 }
 
             });
+
+            const teamList = document.getElementById("Equipe");
+
+if(teamList && item.Equipe){
+
+    teamList.innerHTML = "";
+
+    const membres = item.Equipe.split(",");
+
+    membres.forEach(membre => {
+        const li = document.createElement("li");
+        li.textContent = membre.trim();
+        teamList.appendChild(li);
+    });
+}
+
             // IMAGE POSTER
     const poster = document.getElementById("poster");
     if(poster){

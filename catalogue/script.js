@@ -52,8 +52,47 @@ Papa.parse(csvUrl, {
             });
 
         }
+         // L'ANIMATION GSAP
+            // On s'assure que GSAP est bien chargé sur la page
+            if (typeof gsap !== "undefined") {
+                const tl = gsap.timeline();
 
-        // -----------------
+                // 1. Apparition douce du titre DOC'KO au centre
+                tl.from(".loader-title", {
+                    duration: 1,
+                    scale: 1.2,
+                    opacity: 0,
+                    ease: "power3.out"
+                })
+                // 2. Le fond noir glisse vers le haut pour révéler la page
+                .to("#loader", {
+                    duration: 0.8,
+                    yPercent: -100, // Le fait monter hors de l'écran
+                    ease: "power4.inOut",
+                    delay: 0.6 // On laisse le titre affiché un peu plus d'une demi-seconde
+                })
+                // 3. Le menu (header) apparaît
+                .to("#main-header", {
+                    duration: 0.6,
+                    opacity: 1,
+                    y: 0,
+                    ease: "power2.out"
+                }, "-=0.3") // "-=0.3" permet de démarrer l'action avant que la précédente soit totalement finie
+                // 4. Les sections s'affichent
+                .to(".doc-landing-page", {
+                    duration: 0.1,
+                    opacity: 1
+                }, "-=0.4")
+                // 5. L'effet de cascade (stagger) sur tes documentaires
+                .from(cards, {
+                    duration: 0.8,
+                    y: 60, // Les cartes viennent du bas (60px)
+                    opacity: 0,
+                    stagger: 0.1, // C'est CA qui crée l'effet d'apparition une par une
+                    ease: "back.out(1.2)" // Petit effet de rebond léger à l'arrivée
+                }, "-=0.2");
+            }
+
         // PAGE FILM
         // -----------------
 

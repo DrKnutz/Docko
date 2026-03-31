@@ -1,6 +1,5 @@
 @media (max-width: 768px) {       
     body {
-        
         font-size: 14px;
     }
 }
@@ -123,6 +122,10 @@ nav li:hover {
     opacity: 0.6;
 }
 
+body:not(:has(#loader)) #main-header, 
+body:not(:has(#loader)) .doc-landing-page {
+    opacity: 1;
+}
 /* SECTION DOCS */
 
 .doc-landing-page {
@@ -460,4 +463,9 @@ a:hover {
 
 .film-card:hover {
     transform: scale(1.05);
+}
+
+.categories-page {
+    padding-left: 60px;
+    padding-right: 60px;
 }

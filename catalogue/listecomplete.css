@@ -1,0 +1,16 @@
+.year-title {
+    font-size: 30px;
+    color: #FCD135;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    border-left: 5px solid #EA770B;
+    padding-left: 15px;
+}
+
+/*GRILLE DES FILMS */
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 documentaires par ligne */
+    gap: 20px;
+    margin-bottom: 60px; /* Espace avant l'année suivante */
+}

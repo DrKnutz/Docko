@@ -1,3 +1,14 @@
+// ==============================
+// VARIABLE GLOBALE (TRÈS IMPORTANT)
+// ==============================
+
+let docs = [];
+
+
+// ==============================
+// CONFIG
+// ==============================
+
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE1Q8vZ5reRYhGlwqQDLXTNyRh9dhWMlw_iaIB5sL5-tPV8LgmKDu-D7YMNh_bcXVczM34lhd0l9aE/pub?gid=0&single=true&output=csv";
 
 const params = new URLSearchParams(window.location.search);
@@ -6,16 +17,24 @@ const catParam = params.get("cat");
 
 console.log("hello");
 
+
+// ==============================
+// CHARGEMENT CSV
+// ==============================
+
 Papa.parse(csvUrl, {
     download: true,
     header: true,
     complete: function(results){
 
-        const data = results.data;
+        docs = results.data; // 🔥 LA LIGNE CRUCIALE
+        const data = docs;
 
-        // -----------------
+        console.log("CSV chargé :", docs);
+
+        // ==============================
         // PAGE CATALOGUE
-        // -----------------
+        // ==============================
 
         const cards = document.querySelectorAll(".doc-card");
 
@@ -24,13 +43,14 @@ Papa.parse(csvUrl, {
             cards.forEach(card => {
 
                 const id = card.dataset.id;
-                const item = data.find(d => d.ID === id);
+                const item = data.find(d => d.ID && d.ID.trim() === id);
+
                 if(!item) return;
 
                 // image capsule
                 const img = card.querySelector("img");
                 if(img && item.poster){
-                    img.src = "../posters/" + id + ".jpg";
+                    img.src = "../posters/" + item.ID + ".jpg";
                 }
 
                 const title = card.querySelector(".Titre");
@@ -52,53 +72,54 @@ Papa.parse(csvUrl, {
             });
 
         }
-         // L'ANIMATION GSAP
-            // On s'assure que GSAP est bien chargé sur la page
-            if (typeof gsap !== "undefined") {
-                const tl = gsap.timeline();
 
-                // 1. Apparition douce du titre DOC'KO au centre
-                tl.from(".loader-title", {
-                    duration: 1,
-                    scale: 1.2,
-                    opacity: 0,
-                    ease: "power3.out"
-                })
-                // 2. Le fond noir glisse vers le haut pour révéler la page
-                .to("#loader", {
-                    duration: 0.8,
-                    yPercent: -100, // Le fait monter hors de l'écran
-                    ease: "power4.inOut",
-                    delay: 0.6 // On laisse le titre affiché un peu plus d'une demi-seconde
-                })
-                // 3. Le menu (header) apparaît
-                .to("#main-header", {
-                    duration: 0.6,
-                    opacity: 1,
-                    y: 0,
-                    ease: "power2.out"
-                }, "-=0.3") // "-=0.3" permet de démarrer l'action avant que la précédente soit totalement finie
-                // 4. Les sections s'affichent
-                .to(".doc-landing-page", {
-                    duration: 0.1,
-                    opacity: 1
-                }, "-=0.4")
-                // 5. L'effet de cascade (stagger) sur tes documentaires
-                .from(cards, {
-                    duration: 0.8,
-                    y: 60, // Les cartes viennent du bas (60px)
-                    opacity: 0,
-                    stagger: 0.1, // C'est CA qui crée l'effet d'apparition une par une
-                    ease: "back.out(1.2)" // Petit effet de rebond léger à l'arrivée
-                }, "-=0.2");
-            }
+        // ==============================
+        // ANIMATION GSAP
+        // ==============================
 
+        if (typeof gsap !== "undefined") {
+
+            const tl = gsap.timeline();
+
+            tl.from(".loader-title", {
+                duration: 1,
+                scale: 1.2,
+                opacity: 0,
+                ease: "power3.out"
+            })
+            .to("#loader", {
+                duration: 0.8,
+                yPercent: -100,
+                ease: "power4.inOut",
+                delay: 0.6
+            })
+            .to("#main-header", {
+                duration: 0.6,
+                opacity: 1,
+                y: 0,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to(".doc-landing-page", {
+                duration: 0.1,
+                opacity: 1
+            }, "-=0.4")
+            .from(cards, {
+                duration: 0.8,
+                y: 60,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "back.out(1.2)"
+            }, "-=0.2");
+        }
+
+        // ==============================
         // PAGE FILM
-        // -----------------
+        // ==============================
 
         if(itemId){
 
-            const item = data.find(d => d.ID === itemId);
+            const item = data.find(d => d.ID && d.ID.trim() === itemId);
+
             if(!item) return;
 
             Object.keys(item).forEach(key => {
@@ -113,45 +134,46 @@ Papa.parse(csvUrl, {
 
             const teamList = document.getElementById("Equipe");
 
-if(teamList && item.Equipe){
+            if(teamList && item.Equipe){
 
-    teamList.innerHTML = "";
+                teamList.innerHTML = "";
 
-    const membres = item.Equipe.split(",");
+                const membres = item.Equipe.split(",");
 
-    membres.forEach(membre => {
-        const li = document.createElement("li");
-        li.textContent = membre.trim();
-        teamList.appendChild(li);
-    });
-}
+                membres.forEach(membre => {
+                    const li = document.createElement("li");
+                    li.textContent = membre.trim();
+                    teamList.appendChild(li);
+                });
+            }
 
             // IMAGE POSTER
-    const poster = document.getElementById("poster");
-    if(poster){
-        poster.src = "../posters/" + item.ID + ".jpg";
-        poster.alt = item.Titre;
-    }
-    // LIEN DE VISIONNAGE
-const watchLink = document.getElementById("watchLink");
-if(watchLink && item.url){
-    watchLink.href = item.url;
-}
+            const poster = document.getElementById("poster");
+            if(poster){
+                poster.src = "../posters/" + item.ID + ".jpg";
+                poster.alt = item.Titre;
+            }
 
+            // LIEN
+            const watchLink = document.getElementById("watchLink");
+            if(watchLink && item.url){
+                watchLink.href = item.url;
+            }
         }
 
-        // -----------------
-        // PAGE FICHE CATEGORIE (dynamique)
-        // -----------------
+        // ==============================
+        // PAGE CATEGORIE
+        // ==============================
 
         if(catParam){
 
             const filmsCategorie = data.filter(film => film.Category === catParam);
 
             const container = document.querySelector(".catalogue");
+
             if(container){
 
-                container.innerHTML = ""; // vider avant de remplir
+                container.innerHTML = "";
 
                 filmsCategorie.forEach(item => {
 
@@ -160,7 +182,7 @@ if(watchLink && item.url){
 
                     card.innerHTML = `
                         <a href="film.html?id=${item.ID}">
-                            <img src="${item.poster}" alt="${item.Titre}">
+                            <img src="../posters/${item.ID}.jpg" alt="${item.Titre}">
                             <div class="overlay">
                                 <div class="info">
                                     <h3 class="Titre">${item.Titre}</h3>
@@ -171,17 +193,14 @@ if(watchLink && item.url){
                     `;
 
                     container.appendChild(card);
-
                 });
-
             }
 
-            // afficher le titre de la catégorie
             const title = document.getElementById("categoryTitle");
+
             if(title){
                 title.textContent = catParam;
             }
-
         }
 
     }

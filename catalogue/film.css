@@ -1,6 +1,6 @@
 .film-page {
     margin-top: 120px;
-    padding: 80px;
+    padding: 40px;
 }
 
 .film-container {
@@ -37,7 +37,7 @@
 }
 
 .film-synopsis {
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .film-synopsis h2 {
@@ -183,8 +183,8 @@
 /* LIEN REGARDER */
 
 .film-watch {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 30px;
+    margin-bottom:20px;
 }
 
 .btn-watch {

@@ -1,17 +1,3 @@
-// --- VÉRIFICATION IMMÉDIATE DE LA SESSION ---
-(function() {
-    const animationDejaJouee = sessionStorage.getItem("introDocKoJouee");
-    if (animationDejaJouee) {
-        // On crée une règle CSS temporaire pour cacher le loader avant même qu'il ne s'affiche
-        const style = document.createElement('style');
-        style.innerHTML = `
-            #loader { display: none !important; }
-            #main-header, .doc-landing-page { opacity: 1 !important; }
-        `;
-        document.head.appendChild(style);
-    }
-})();
-//
 const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSE1Q8vZ5reRYhGlwqQDLXTNyRh9dhWMlw_iaIB5sL5-tPV8LgmKDu-D7YMNh_bcXVczM34lhd0l9aE/pub?gid=0&single=true&output=csv";
 
 const params = new URLSearchParams(window.location.search);
@@ -76,85 +62,65 @@ Papa.parse(csvUrl, {
 
         }
          // L'ANIMATION GSAP (uniquement à l'ouverture du catalogue)
-            if (typeof gsap !== "undefined" && !sessionStorage.getItem("introDocKoJouee")) {
+         // On s'assure que GSAP est bien chargé sur la page
+            if (typeof gsap !== "undefined") {
                 
-                const tl = gsap.timeline({
-                    onComplete: function() {
-                        sessionStorage.setItem("introDocKoJouee", "true");
-                    }
-                });
-// Ton animation reste la même
-                tl.from(".loader-logo", { // ou .loader-title selon ce que tu utilises
-                    duration: 1.2,
-                    scale: 0.8,
-                    opacity: 0,
-                    ease: "power3.out"
-                })
-                .to("#loader", {
-                    duration: 0.8,
-                    yPercent: -100, 
-                    ease: "power4.inOut",
-                    delay: 0.6 
-                })
-                .to("#main-header", {
-                    duration: 0.6,
-                    opacity: 1,
-                    y: 0,
-                    ease: "power2.out"
-                }, "-=0.3") 
-                .to(".doc-landing-page", {
-                    duration: 0.1,
-                    opacity: 1
-                }, "-=0.4")
-                .from(cards, {
-                    duration: 0.8,
-                    y: 60, 
-                    opacity: 0,
-                    stagger: 0.1, 
-                    ease: "back.out(1.2)" 
-                }, "-=0.2");
+                // 1. On vérifie si l'animation a déjà été jouée pendant cette visite
+                const animationDejaJouee = sessionStorage.getItem("introDocKoJouee");
 
-            } else {
-                // Si l'animation a déjà été jouée, on s'assure juste que les cartes sont visibles
-                gsap.set(cards, { opacity: 1, y: 0 });
-                gsap.set(["#main-header", ".doc-landing-page"], { opacity: 1 });
+                if (animationDejaJouee) {
+                    // SI OUI : On supprime le loader instantanément et on affiche le site
+                    const loader = document.getElementById("loader");
+                    if (loader) loader.style.display = "none";
+                    
+                    // On remet l'opacité à 1 pour le menu et la page, sans durée d'animation
+                    gsap.set(["#main-header", ".doc-landing-page"], { opacity: 1 });
+
+                } else {
+                    // SI NON : C'est la première visite, on joue l'animation complète
+                    const tl = gsap.timeline({
+                        // À la toute fin de l'animation, on enregistre la variable dans la mémoire du navigateur
+                        onComplete: function() {
+                            sessionStorage.setItem("introDocKoJouee", "true");
+                        }
+                    });
+
+                    // 1. Apparition douce du LOGO au centre
+                    tl.from(".loader-logo", {
+                        duration: 1.2,
+                        scale: 0.8,
+                        opacity: 0,
+                        ease: "power3.out"
+                    })
+                    // 2. Le fond noir glisse vers le haut pour révéler la page
+                    .to("#loader", {
+                        duration: 0.8,
+                        yPercent: -100, 
+                        ease: "power4.inOut",
+                        delay: 0.6 
+                    })
+                    // 3. Le menu (header) apparaît
+                    .to("#main-header", {
+                        duration: 0.6,
+                        opacity: 1,
+                        y: 0,
+                        ease: "power2.out"
+                    }, "-=0.3") 
+                    // 4. Les sections s'affichent
+                    .to(".doc-landing-page", {
+                        duration: 0.1,
+                        opacity: 1
+                    }, "-=0.4")
+                    // 5. L'effet de cascade (stagger) sur tes documentaires
+                    .from(cards, {
+                        duration: 0.8,
+                        y: 60, 
+                        opacity: 0,
+                        stagger: 0.1, 
+                        ease: "back.out(1.2)" 
+                    }, "-=0.2");
+                }
             }
-
-        if (typeof gsap !== "undefined") {
-
-            const tl = gsap.timeline();
-
-            tl.from(".loader-title", {
-                duration: 1,
-                scale: 1.2,
-                opacity: 0,
-                ease: "power3.out"
-            })
-            .to("#loader", {
-                duration: 0.8,
-                yPercent: -100,
-                ease: "power4.inOut",
-                delay: 0.6
-            })
-            .to("#main-header", {
-                duration: 0.6,
-                opacity: 1,
-                y: 0,
-                ease: "power2.out"
-            }, "-=0.3")
-            .to(".doc-landing-page", {
-                duration: 0.1,
-                opacity: 1
-            }, "-=0.4")
-            .from(cards, {
-                duration: 0.8,
-                y: 60,
-                opacity: 0,
-                stagger: 0.1,
-                ease: "back.out(1.2)"
-            }, "-=0.2");
-        }
-
         // ==============================
         // PAGE FILM
         // ==============================

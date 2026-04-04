@@ -6,24 +6,19 @@ const catParam = params.get("cat");
 
 console.log("hello");
 
-
-// ==============================
 // CHARGEMENT CSV
-// ==============================
 
 Papa.parse(csvUrl, {
     download: true,
     header: true,
     complete: function(results){
 
-        docs = results.data; // 🔥 LA LIGNE CRUCIALE
+        docs = results.data; // LIGNE IMPORTANTE : on stocke les données du CSV dans une variable globale "docs" pour pouvoir y accéder partout dans le script
         const data = docs;
 
         console.log("CSV chargé :", docs);
 
-        // ==============================
         // PAGE CATALOGUE
-        // ==============================
 
         const cards = document.querySelectorAll(".doc-card");
 
@@ -62,17 +57,18 @@ Papa.parse(csvUrl, {
 
         }
          // L'ANIMATION GSAP (uniquement à l'ouverture du catalogue)
-         // On s'assure que GSAP est bien chargé sur la page
+         // verification GSAP est bien chargé sur la page
             if (typeof gsap !== "undefined") {
                 
-                // 1. On vérifie si l'animation a déjà été jouée pendant cette visite
+                // verification si l'animation a déjà été jouée pendant cette visite
                 const animationDejaJouee = sessionStorage.getItem("introDocKoJouee");
 
                 if (animationDejaJouee) {
                     // SI OUI : On supprime le loader instantanément et on affiche le site
                     const loader = document.getElementById("loader");
+                    const loaderLogo = document.querySelector(".loader-logo");
                     if (loader) loader.style.display = "none";
-                    
+                    if (loaderLogo) loaderLogo.style.display = "none";
                     // On remet l'opacité à 1 pour le menu et la page, sans durée d'animation
                     gsap.set(["#main-header", ".doc-landing-page"], { opacity: 1 });
 
@@ -85,7 +81,7 @@ Papa.parse(csvUrl, {
                         }
                     });
 
-                    // 1. Apparition douce du LOGO au centre
+                    // 1. Apparition du logo
                     tl.from(".loader-logo", {
                         duration: 1.2,
                         scale: 0.8,
@@ -111,7 +107,7 @@ Papa.parse(csvUrl, {
                         duration: 0.1,
                         opacity: 1
                     }, "-=0.4")
-                    // 5. L'effet de cascade (stagger) sur tes documentaires
+                    // 5. L'effet de cascade (stagger) sur les documentaires
                     .from(cards, {
                         duration: 0.8,
                         y: 60, 
@@ -121,9 +117,8 @@ Papa.parse(csvUrl, {
                     }, "-=0.2");
                 }
             }
-        // ==============================
+
         // PAGE FILM
-        // ==============================
 
         if(itemId){
 
@@ -170,9 +165,7 @@ Papa.parse(csvUrl, {
             }
         }
 
-        // ==============================
         // PAGE CATEGORIE
-        // ==============================
 
         if(catParam){
 

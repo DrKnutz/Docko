@@ -20,16 +20,24 @@ const catParam = params.get("cat");
 
 console.log("hello");
 
+
+// ==============================
+// CHARGEMENT CSV
+// ==============================
+
 Papa.parse(csvUrl, {
     download: true,
     header: true,
     complete: function(results){
 
-        const data = results.data;
+        docs = results.data; // 🔥 LA LIGNE CRUCIALE
+        const data = docs;
 
-        // -----------------
+        console.log("CSV chargé :", docs);
+
+        // ==============================
         // PAGE CATALOGUE
-        // -----------------
+        // ==============================
 
         const cards = document.querySelectorAll(".doc-card");
 
@@ -38,13 +46,14 @@ Papa.parse(csvUrl, {
             cards.forEach(card => {
 
                 const id = card.dataset.id;
-                const item = data.find(d => d.ID === id);
+                const item = data.find(d => d.ID && d.ID.trim() === id);
+
                 if(!item) return;
 
                 // image capsule
                 const img = card.querySelector("img");
                 if(img && item.poster){
-                    img.src = "../posters/" + id + ".jpg";
+                    img.src = "../posters/" + item.ID + ".jpg";
                 }
 
                 const title = card.querySelector(".Titre");
@@ -111,12 +120,49 @@ Papa.parse(csvUrl, {
                 gsap.set(["#main-header", ".doc-landing-page"], { opacity: 1 });
             }
 
+        if (typeof gsap !== "undefined") {
+
+            const tl = gsap.timeline();
+
+            tl.from(".loader-title", {
+                duration: 1,
+                scale: 1.2,
+                opacity: 0,
+                ease: "power3.out"
+            })
+            .to("#loader", {
+                duration: 0.8,
+                yPercent: -100,
+                ease: "power4.inOut",
+                delay: 0.6
+            })
+            .to("#main-header", {
+                duration: 0.6,
+                opacity: 1,
+                y: 0,
+                ease: "power2.out"
+            }, "-=0.3")
+            .to(".doc-landing-page", {
+                duration: 0.1,
+                opacity: 1
+            }, "-=0.4")
+            .from(cards, {
+                duration: 0.8,
+                y: 60,
+                opacity: 0,
+                stagger: 0.1,
+                ease: "back.out(1.2)"
+            }, "-=0.2");
+        }
+
+        // ==============================
         // PAGE FILM
-        // -----------------
+        // ==============================
 
         if(itemId){
 
-            const item = data.find(d => d.ID === itemId);
+            const item = data.find(d => d.ID && d.ID.trim() === itemId);
+
             if(!item) return;
 
             Object.keys(item).forEach(key => {
@@ -131,45 +177,46 @@ Papa.parse(csvUrl, {
 
             const teamList = document.getElementById("Equipe");
 
-if(teamList && item.Equipe){
+            if(teamList && item.Equipe){
 
-    teamList.innerHTML = "";
+                teamList.innerHTML = "";
 
-    const membres = item.Equipe.split(",");
+                const membres = item.Equipe.split(",");
 
-    membres.forEach(membre => {
-        const li = document.createElement("li");
-        li.textContent = membre.trim();
-        teamList.appendChild(li);
-    });
-}
+                membres.forEach(membre => {
+                    const li = document.createElement("li");
+                    li.textContent = membre.trim();
+                    teamList.appendChild(li);
+                });
+            }
 
             // IMAGE POSTER
-    const poster = document.getElementById("poster");
-    if(poster){
-        poster.src = "../posters/" + item.ID + ".jpg";
-        poster.alt = item.Titre;
-    }
-    // LIEN DE VISIONNAGE
-const watchLink = document.getElementById("watchLink");
-if(watchLink && item.url){
-    watchLink.href = item.url;
-}
+            const poster = document.getElementById("poster");
+            if(poster){
+                poster.src = "../posters/" + item.ID + ".jpg";
+                poster.alt = item.Titre;
+            }
 
+            // LIEN
+            const watchLink = document.getElementById("watchLink");
+            if(watchLink && item.url){
+                watchLink.href = item.url;
+            }
         }
 
-        // -----------------
-        // PAGE FICHE CATEGORIE (dynamique)
-        // -----------------
+        // ==============================
+        // PAGE CATEGORIE
+        // ==============================
 
         if(catParam){
 
             const filmsCategorie = data.filter(film => film.Category === catParam);
 
             const container = document.querySelector(".catalogue");
+
             if(container){
 
-                container.innerHTML = ""; // vider avant de remplir
+                container.innerHTML = "";
 
                 filmsCategorie.forEach(item => {
 
@@ -178,7 +225,7 @@ if(watchLink && item.url){
 
                     card.innerHTML = `
                         <a href="film.html?id=${item.ID}">
-                            <img src="${item.poster}" alt="${item.Titre}">
+                            <img src="../posters/${item.ID}.jpg" alt="${item.Titre}">
                             <div class="overlay">
                                 <div class="info">
                                     <h3 class="Titre">${item.Titre}</h3>
@@ -189,13 +236,11 @@ if(watchLink && item.url){
                     `;
 
                     container.appendChild(card);
-
                 });
-
             }
 
-            // afficher le titre de la catégorie
             const title = document.getElementById("categoryTitle");
+
             if(title){
                 title.textContent = catParam;
             };

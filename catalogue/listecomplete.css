@@ -12,5 +12,5 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 documentaires par ligne */
     gap: 20px;
-    margin-bottom: 60px; /* Espace avant l'année suivante */
+    margin-bottom: 60px;
 }

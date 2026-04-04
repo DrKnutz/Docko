@@ -13,7 +13,7 @@ Papa.parse(csvUrl, {
         const data = results.data;
         data.sort((a,b) => b.Date - a.Date);
 
-// --- NOUVEAU CODE À AJOUTER POUR LE TITRE H1 ---
+// TITRE H1
          const titrePage = document.getElementById("categoryTitle");
          if (titrePage) {
              if (catParam) {
@@ -23,13 +23,7 @@ Papa.parse(csvUrl, {
              }
         }
 
-        // -----------------
-        // Affichage CATALOGUE
-        // -----------------
-
-       
-
-
+// Affichage CATALOGUE
 
             data.forEach(item => {
                 if(catParam==item.Categorie_EIDR || catParam==null){
@@ -47,7 +41,7 @@ Papa.parse(csvUrl, {
                     </a>
 </div>`
 
-                // image capsule
+// image capsule
                 var id = item.ID;
                 var card = document.querySelector(`[data-id="${item.ID}"]`);
                 const img = card.querySelector("img");
@@ -65,7 +59,7 @@ Papa.parse(csvUrl, {
                     cat.textContent = item.Category;
                 }
 
-                // lien vers page film
+// lien vers page film
                 const link = card.querySelector("a");
                 if(link){
                     link.href = "film.html?id=" + item.ID;

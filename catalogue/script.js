@@ -18,7 +18,7 @@ Papa.parse(csvUrl, {
 
         console.log("CSV chargé :", docs);
 
-        // PAGE CATALOGUE
+// PAGE CATALOGUE
 
         const cards = document.querySelectorAll(".doc-card");
 
@@ -56,7 +56,7 @@ Papa.parse(csvUrl, {
             });
 
         }
-         // L'ANIMATION GSAP (uniquement à l'ouverture du catalogue)
+// L'ANIMATION GSAP (uniquement à l'ouverture du catalogue)
          // verification GSAP est bien chargé sur la page
             if (typeof gsap !== "undefined") {
                 
@@ -118,7 +118,7 @@ Papa.parse(csvUrl, {
                 }
             }
 
-        // PAGE FILM
+// PAGE FILM
 
         if(itemId){
 
@@ -165,7 +165,7 @@ Papa.parse(csvUrl, {
             }
         }
 
-        // PAGE CATEGORIE
+// PAGE CATEGORIE
 
         if(catParam){
 

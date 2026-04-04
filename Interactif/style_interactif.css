@@ -1,34 +1,25 @@
-/* .image {
-    position: relative;
-    width: 100%;
-}
+/* ==============================
+   BASE
+============================== */
 
-.background {
-    width: 100%;
-    display: block;
-    z-index: -10;
-} */
-
-
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
 }
 
-.image img{
-z-index:1;
-}
-
-button{
-z-index:9999;
-}
+/* ==============================
+   CONTENEUR PRINCIPAL
+============================== */
 
 .image {
     position: relative;
     width: 100%;
     overflow: hidden;
+}
+
+.image img {
+    z-index: 1;
 }
 
 .background {
@@ -37,29 +28,25 @@ z-index:9999;
     display: block;
 }
 
-.placement {
+/* ==============================
+   ZONES CLIQUABLES
+============================== */
+
+.placement, .droite {
     position: absolute;
     left: 0;
-    top: 0%;
+    top: 0;
     width: 100%;
     z-index: 2;
-    transition: transform 0.3s ease;
     cursor: pointer;
-
-    transform-origin: center;
+    transition: transform 0.3s ease;
 }
 
-.droite {
-    position: absolute;
-    left: 0;
-    top: 0%;
-    width: 100%;
-    z-index: 2;
-    transition: transform 0.3s ease;
-    cursor: pointer;
+.placement { transform-origin: center; }
+.droite    { transform-origin: right 90%; }
 
-    transform-origin: right 90%;
-}
+.placement:hover { transform: scale(1.03); filter: drop-shadow(0 10px 35px #741A29); }
+.droite:hover    { transform: scale(1.04); filter: drop-shadow(0 10px 35px #741A29); }
 
 .objet {
     position: absolute;
@@ -68,277 +55,217 @@ z-index:9999;
     width: 100%;
     z-index: 3;
     cursor: pointer;
-
     transform-origin: center 10%;
 }
 
-.placement:hover {
-    transform: scale(1.03);
-    filter: drop-shadow(0 10px 35px #741A29);
-}
+.objet:hover { transform: scale(1.01); filter: drop-shadow(0 10px 35px #741A29); }
 
+/* ==============================
+   UTILITAIRES
+============================== */
 
-.droite:hover {
-    transform: scale(1.04);
-    filter: drop-shadow(0 10px 35px #741A29);
-}
+.hidden        { display: none; }
+.no-interaction { pointer-events: none; }
 
-.objet:hover {
-    transform: scale(1.01);
-    filter: drop-shadow(0 10px 35px #741A29);
-}
+/* ==============================
+   GIFs
+============================== */
 
-.hidden {
-    display: none;
-}
-
-.no-interaction {
+.gif-accueil {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-/* overlay */
+.gif-accueil.visible { opacity: 1; }
+
+.gif-permanent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ==============================
+   ANIMATIONS
+============================== */
+
+@keyframes zoomDroite {
+    from { transform: scale(1) translateX(0); }
+    to   { transform: scale(2) translateX(25%); }
+}
+
+.zoom-transition {
+    animation: zoomDroite 1.2s ease-in forwards;
+}
+
+@keyframes zoomVers {
+    from { transform: scale(1); }
+    to   { transform: scale(3); }
+}
+
+.zoom-vers {
+    animation: zoomVers 0.8s ease-in forwards;
+}
+
+/* ==============================
+   BOUTONS
+============================== */
+
+button {
+    position: fixed;
+    top: 20px;
+    z-index: 9999;
+    background: #fdfdfd;
+    border: 3px solid #000;
+    border-radius: 18px 22px 16px 20px;
+    padding: 12px 24px;
+    font-family: "Patrick Hand", cursive;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px #000;
+    transition: 0.2s;
+}
+
+#retour  { left: 20px; }
+#accueil { left: 150px; }
+
+button:hover  { transform: rotate(-1deg) scale(1.05); box-shadow: 5px 5px 0px #000; }
+button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000; }
+
+/* ==============================
+   OVERLAY POPUP
+============================== */
 
 #overlayPopup {
-
     position: fixed;
     inset: 0;
-
     background: rgba(0, 0, 0, 0.85);
-
     display: none;
     justify-content: center;
     align-items: center;
-
     z-index: 5000;
 }
 
 .overlay-container {
-
     background: #2B2927;
     color: #F7EBEB;
-
     width: 90%;
     max-width: 1200px;
     max-height: 90vh;
-
     overflow-y: auto;
-
     border-radius: 12px;
-
     padding: 60px;
-
     position: relative;
 }
 
 .film-overlay {
-
     display: flex;
     gap: 60px;
 }
 
-/* Image des docus */
-
-.film-left {
-    width: 45%;
-}
+.film-left  { width: 45%; }
+.film-right { width: 55%; }
 
 .film-left img {
-
     width: 100%;
     aspect-ratio: 16/9;
     object-fit: cover;
-
     border-radius: 10px;
 }
 
-.film-right {
-    width: 55%;
-}
-
 #Titre {
-
     font-size: 42px;
     color: #FCD135;
     margin-bottom: 8px;
 }
 
 .film-details {
-
     font-size: 16px;
     opacity: 0.8;
-
     margin-bottom: 30px;
 }
 
 .film-synopsis p {
-
     font-size: 17px;
     line-height: 1.8;
-
     margin-bottom: 25px;
 }
 
-/*tags pour films*/
-
-.film-tags h3 {
-
+.film-tags h3,
+.film-team h3 {
     margin-top: 25px;
     margin-bottom: 15px;
     color: #FCD135;
 }
 
 .tag {
-
     display: inline-block;
-
     background: #FCD135;
     color: black;
-
     padding: 6px 14px;
-
     border-radius: 20px;
-
-    margin-right: 8px;
-    margin-bottom: 8px;
-
+    margin: 0 8px 8px 0;
     font-size: 14px;
 }
 
 .btn-watch {
-
     display: inline-block;
-
     background: #EA770B;
     color: white;
-
     padding: 12px 25px;
-
     border-radius: 25px;
-
     text-decoration: none;
-
     margin-bottom: 40px;
 }
 
 .btn-watch:hover {
-
     background: linear-gradient(135deg, #FCD135, #EA770B);
     color: black;
 }
 
-.film-team h3 {
-
-    color: #FCD135;
-    margin-bottom: 15px;
-}
-
 .team-list {
-
     columns: 2;
-
     list-style: none;
     padding: 0;
 }
 
 .team-list li {
-
     margin-bottom: 8px;
     font-size: 15px;
 }
 
 .popup-close {
-
     position: absolute;
-
     top: 20px;
     right: 30px;
-
     background: none;
     border: none;
-
     font-size: 32px;
-
     color: white;
-
     cursor: pointer;
 }
 
+/* ==============================
+   RESPONSIVE
+============================== */
+
 @media (max-width: 900px) {
-
-    .film-overlay {
-
-        flex-direction: column;
-    }
-
-    .film-left,
-    .film-right {
-
-        width: 100%;
-    }
-
-    .team-list {
-
-        columns: 1;
-    }
-
-    .overlay-container {
-
-        padding: 40px;
-    }
-
+    .film-overlay { flex-direction: column; }
+    .film-left, .film-right { width: 100%; }
+    .team-list { columns: 1; }
+    .overlay-container { padding: 40px; }
 }
 
 @media (max-width: 600px) {
-
-    #Titre {
-
-        font-size: 32px;
-    }
-
-    #Titre_Kr {
-
-        font-size: 20px;
-    }
-
+    #Titre    { font-size: 32px; }
+    #Titre_Kr { font-size: 20px; }
 }
-
-button{
-  position: fixed; 
-  top:20px;
-
-  background:#fdfdfd;
-  border:3px solid #000;
-  border-radius:18px 22px 16px 20px; 
-
-  padding:12px 24px;
-
-  font-family: "Patrick Hand", cursive;
-  font-size:16px;
-  font-weight:bold;
-
-  color:#000;
-  cursor:pointer;
-
-  box-shadow:3px 3px 0px #000; 
-
-  transition:0.2s;
-  z-index:9999; 
-}
-
-#retour{
-left:20px;
-}
-
-#accueil{
-left:150px;
-}
-
-button:hover{
-  transform:rotate(-1deg) scale(1.05);
-  box-shadow:5px 5px 0px #000;
-}
-
-button:active{
-  transform:translate(2px,2px);
-  box-shadow:1px 1px 0px #000;
-} 

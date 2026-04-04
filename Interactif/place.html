@@ -1,283 +1,178 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="style_interactif.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocKo — Interactif</title>
+    <link rel="stylesheet" href="style_interactif.css">
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 </head>
-
 <body>
+
   <div class="image">
 
     <button id="retour" onclick="retour()">Retour</button>
-
     <button id="accueil" onclick="retourAccueil()">Vers le menu</button>
 
-    <!-- Place -->
+    <!-- Fond principal -->
     <img id="1" src="../Interactif/Images/test2_resultat.webp" class="background">
 
-    <!-- politique -->
-
-    <img src="../Interactif/Images/panneau_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_pol/panneau_zoom_couleur_resultat.webp" data-objets="politique"
-      onclick="changerImage(this)">
-
-    <!-- Images politique -->
-
-    <img src="../Interactif/Images/Images_pol/liancourt_resultat.webp"
-      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="18">
-
-    <img src="../Interactif/Images/Images_pol/Buma_resultat.webp" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup(this)" data-id="26">
-
-    <img src="../Interactif/Images/Images_pol/feminisme_resultat.webp"
-      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="8">
-
-    <img src="../Interactif/Images/Images_pol/mouv_saemul_resultat.webp"
-      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="30">
-
-    <img src="../Interactif/Images/Images_pol/revolte_etudiante_resultat.webp"
-      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="55">
-
-    <img src="../Interactif/Images/Images_pol/sewol_resultat.webp" class="objet politique clickable-transparency hidden"
-      onclick="ouvrirPopup(this)" data-id="21">
-
-    <img src="../Interactif/Images/Images_pol/soulevement_resultat.webp"
-      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="5">
-
-
-    <!-- gwangju -->
-    <img src="../Interactif/Images/gwangju_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_gwangju/gwangju_zoom_resultat.webp" data-objets="gwangju"
-      onclick="changerImage(this)">
-    <!--  gwangju objet -->
-
-
-    <img src="../Interactif/Images/Images_gwangju/vendeur_gwangju.webp" class="objet hidden gwangju no-interaction">
-
-    <img src="../Interactif/Images/Images_gwangju/16mm_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="27">
-
-    <img src="../Interactif/Images/Images_gwangju/gwangju_2019_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="17">
-
-    <img src="../Interactif/Images/Images_gwangju/gwangju_2020_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="23">
-
-    <img src="../Interactif/Images/Images_gwangju/gwangju_2024_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="54">
-
-    <img src="../Interactif/Images/Images_gwangju/souvenirs_gwangju_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="6">
-
-    <img src="../Interactif/Images/Images_gwangju/unknown_resultat.webp"
-      class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="42">
-
-    <!-- influences -->
-    <img src="../Interactif/Images/influence_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_influences/influence_zoom_resultat.webp" data-objets="influence"
-      onclick="changerImage(this)">
-
-
-    <!--  influences objet -->
-
-
-    <img src="../Interactif/Images/images_influences/BehindTheWall_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="50">
-
-    <img src="../Interactif/Images/images_influences/ColonisationJpn_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="12">
-
-    <img src="../Interactif/Images/images_influences/femmesDeReconfort_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="10">
-
-    <img src="../Interactif/Images/images_influences/Halmeonis_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="43">
-
-    <img src="../Interactif/Images/images_influences/Hialeah_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="47">
-
-    <img src="../Interactif/Images/images_influences/Jeju_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="13">
-
-    <img src="../Interactif/Images/images_influences/Missionnaires_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="14">
-
-         <img src="../Interactif/Images/images_influences/heritages_resultat.webp"
-      class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="2">
-
-    <!-- histoire -->
-    <img src="../Interactif/Images/histoire_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_national/national_zoom.webp" data-objets="national"
-      onclick="changerImage(this)">
-
-    <!--  histoire objet -->
-
-    <img src="../Interactif/Images/Images_national/AmiralYi_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="31">
-
-    <img src="../Interactif/Images/Images_national/Jikji_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="15">
-
-    <img src="../Interactif/Images/Images_national/KTX_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="38">
-
-    <img src="../Interactif/Images/Images_national/Noryang_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="35">
-
-    <img src="../Interactif/Images/Images_national/Sejong_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="16">
-
-    <img src="../Interactif/Images/Images_national/Tangun_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="52">
-
-    <img src="../Interactif/Images/Images_national/YoonHuiSoon_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="37">
-
-    <img src="../Interactif/Images/Images_national/YuGwanSun_resultat.webp"
-      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="32">
-
-    <!-- nord et sud -->
-
-    <img src="../Interactif/Images/nordsud_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_ns/ns_2_resultat.webp" data-objets="ns" onclick="changerImage(this)">
-
-    <!--  nord et sud objet -->
-    <img src="../Interactif/Images/Images_ns/familles-separees_resultat.webp"
-      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="24">
-
-    <img src="../Interactif/Images/Images_ns/ligue-bodo_resultat.webp" class="objet ns clickable-transparency hidden"
-      onclick="ouvrirPopup(this)" data-id="22">
-
-    <img src="../Interactif/Images/Images_ns/memoires-captives_resultat.webp"
-      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="59">
-
-    <img src="../Interactif/Images/Images_ns/memoires-guerre-coree_resultat.webp"
-      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="11">
-
-    <img src="../Interactif/Images/Images_ns/souvenirs-du-nord-au-sud_resultat.webp"
-      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="9">
-
-    <img src="../Interactif/Images/Images_ns/yeosun-carl-mydans_resultat.webp"
-      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="46">
-
-    <!--  culture  -->
-
-
-    <img src="../Interactif/Images/culture_place_resultat.webp" class="placement clickable-transparency"
-      data-image="../Interactif/Images/Images_culture/culture_zoom_resultat.webp" data-objets="culture"
-      onclick="changerImage(this)">
-    <!-- images culture -->
-
-    <img src="../Interactif/Images/Images_culture/arirang_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="3">
-
-    <img src="../Interactif/Images/Images_culture/art_contempo_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="25">
-
-    <img src="../Interactif/Images/Images_culture/calligraphie_resultat.webp"
-      class=" objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="36">
-
-    <img src="../Interactif/Images/Images_culture/chamanisme_resultat.webp"
-      class=" objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="45">
-
-    <img src="../Interactif/Images/Images_culture/cinema_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="20">
-
-    <img src="../Interactif/Images/Images_culture/hanbok_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="39">
-
-    <img src="../Interactif/Images/Images_culture/histoire_gout_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="44">
-
-    <img src="../Interactif/Images/Images_culture/talchum_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="33">
-
-    <img src="../Interactif/Images/Images_culture/trot_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="56">
-
-    <img src="../Interactif/Images/Images_culture/Yeongdo_resultat.webp"
-      class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="40">
-
-
-    <!--  lieu de vie  -->
-    <img src="../Interactif/Images/ldv_place_resultat.webp" class="droite clickable-transparency"
-      data-image="../Interactif/Images/Images_ldv/ldv_interieur_resultat.webp" data-objets="ldv"
-      onclick="changerImage(this)">
-
-    <!--  lieu de vie objet -->
-
-    <img src="../Interactif/Images/Images_ldv/architecture-urbanisme-busan_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="41">
-
-
-
-    <img src="../Interactif/Images/Images_ldv/hanok_resultat.webp" class="objet ldv clickable-transparency hidden"
-      onclick="ouvrirPopup(this)" data-id="51">
-
-    <img src="../Interactif/Images/Images_ldv/jardins-busan_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="29">
-
-    <img src="../Interactif/Images/Images_ldv/marche-guide_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="4">
-
-    <img src="../Interactif/Images/Images_ldv/réfugiés-busan_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="34">
-
-    <img src="../Interactif/Images/Images_ldv/village-gamcheon_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="7">
-
-    <img src="../Interactif/Images/Images_ldv/yeongdo-kangkangee_resultat.webp"
-      class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="48">
-
-
-    <!--  social -->
-    <img src="../Interactif/Images/social_place_resultat.webp" class="droite clickable-transparency"
-      data-image="../Interactif/Images/Images_social/social_zoom_resultat.webp" data-objets="social"
-      onclick="changerImage(this)">
-
-    <!--  social objet -->
-
-    <img src="../Interactif/Images/Images_social/adoptions_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="1">
-
-    <img src="../Interactif/Images/Images_social/alcool_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="53">
-
-    <img src="../Interactif/Images/Images_social/beauté_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="49">
-
-    <img src="../Interactif/Images/Images_social/diaspora_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="19">
-
-    <img src="../Interactif/Images/Images_social/éduquer_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="58">
-
-    <img src="../Interactif/Images/Images_social/glaneurs_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="57">
-
-    <img src="../Interactif/Images/Images_social/plongeuses_resultat.webp"
-      class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="28">
-
+    <!-- GIFs d'ambiance -->
+    <img src="../Interactif/Animation/Boureau.GIF"           class="gif-accueil gif-1 no-interaction">
+    <img src="../Interactif/Animation/PNJs.GIF"              class="gif-permanent no-interaction">
+
+    <!-- ======= POLITIQUE ======= -->
+    <img src="../Interactif/Images/panneau_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-image="../Interactif/Images/Images_pol/panneau_zoom_couleur_resultat.webp"
+         data-objets="politique"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_pol/liancourt_resultat.webp"      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="18">
+    <img src="../Interactif/Images/Images_pol/Buma_resultat.webp"           class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="26">
+    <img src="../Interactif/Images/Images_pol/feminisme_resultat.webp"      class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="8">
+    <img src="../Interactif/Images/Images_pol/mouv_saemul_resultat.webp"    class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="30">
+    <img src="../Interactif/Images/Images_pol/revolte_etudiante_resultat.webp" class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="55">
+    <img src="../Interactif/Images/Images_pol/sewol_resultat.webp"          class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="21">
+    <img src="../Interactif/Images/Images_pol/soulevement_resultat.webp"    class="objet politique clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="5">
+
+    <!-- ======= GWANGJU ======= -->
+    <img src="../Interactif/Images/gwangju_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-image="../Interactif/Images/Images_gwangju/gwangju_zoom_resultat.webp"
+         data-objets="gwangju"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_gwangju/vendeur_gwangju.webp"         class="objet gwangju no-interaction hidden">
+    <img src="../Interactif/Images/Images_gwangju/16mm_resultat.webp"           class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="27">
+    <img src="../Interactif/Images/Images_gwangju/gwangju_2019_resultat.webp"   class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="17">
+    <img src="../Interactif/Images/Images_gwangju/gwangju_2020_resultat.webp"   class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="23">
+    <img src="../Interactif/Images/Images_gwangju/gwangju_2024_resultat.webp"   class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="54">
+    <img src="../Interactif/Images/Images_gwangju/souvenirs_gwangju_resultat.webp" class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="6">
+    <img src="../Interactif/Images/Images_gwangju/unknown_resultat.webp"        class="objet gwangju clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="42">
+
+    <!-- ======= INFLUENCES ======= -->
+    <img src="../Interactif/Images/influence_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-image="../Interactif/Images/Images_influences/influence_zoom_resultat.webp"
+         data-objets="influence"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/images_influences/BehindTheWall_resultat.webp"     class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="50">
+    <img src="../Interactif/Images/images_influences/ColonisationJpn_resultat.webp"   class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="12">
+    <img src="../Interactif/Images/images_influences/femmesDeReconfort_resultat.webp" class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="10">
+    <img src="../Interactif/Images/images_influences/Halmeonis_resultat.webp"         class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="43">
+    <img src="../Interactif/Images/images_influences/Hialeah_resultat.webp"           class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="47">
+    <img src="../Interactif/Images/images_influences/Jeju_resultat.webp"              class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="13">
+    <img src="../Interactif/Images/images_influences/Missionnaires_resultat.webp"     class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="14">
+    <img src="../Interactif/Images/images_influences/heritages_resultat.webp"         class="objet influence clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="2">
+
+    <!-- ======= HISTOIRE ======= -->
+    <img src="../Interactif/Images/histoire_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-image="../Interactif/Images/Images_national/national_zoom.webp"
+         data-objets="national"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_national/AmiralYi_resultat.webp"    class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="31">
+    <img src="../Interactif/Images/Images_national/Jikji_resultat.webp"       class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="15">
+    <img src="../Interactif/Images/Images_national/KTX_resultat.webp"         class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="38">
+    <img src="../Interactif/Images/Images_national/Noryang_resultat.webp"     class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="35">
+    <img src="../Interactif/Images/Images_national/Sejong_resultat.webp"      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="16">
+    <img src="../Interactif/Images/Images_national/Tangun_resultat.webp"      class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="52">
+    <img src="../Interactif/Images/Images_national/YoonHuiSoon_resultat.webp" class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="37">
+    <img src="../Interactif/Images/Images_national/YuGwanSun_resultat.webp"   class="objet national clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="32">
+
+    <!-- ======= NORD ET SUD ======= -->
+    <img src="../Interactif/Images/nordsud_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-transition="../Interactif/Images/Images_ns/ns_1_resultat.webp"
+         data-image="../Interactif/Images/Images_ns/ns_2_resultat.webp"
+         data-objets="ns"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_ns/familles-separees_resultat.webp"       class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="24">
+    <img src="../Interactif/Images/Images_ns/ligue-bodo_resultat.webp"              class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="22">
+    <img src="../Interactif/Images/Images_ns/memoires-captives_resultat.webp"       class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="59">
+    <img src="../Interactif/Images/Images_ns/memoires-guerre-coree_resultat.webp"   class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="11">
+    <img src="../Interactif/Images/Images_ns/souvenirs-du-nord-au-sud_resultat.webp" class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="9">
+    <img src="../Interactif/Images/Images_ns/yeosun-carl-mydans_resultat.webp"      class="objet ns clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="46">
+
+    <!-- ======= CULTURE ======= -->
+    <img src="../Interactif/Images/culture_place_resultat.webp"
+         class="placement clickable-transparency"
+         data-image="../Interactif/Images/Images_culture/culture_zoom_resultat.webp"
+         data-objets="culture"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_culture/arirang_resultat.webp"       class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="3">
+    <img src="../Interactif/Images/Images_culture/art_contempo_resultat.webp"  class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="25">
+    <img src="../Interactif/Images/Images_culture/calligraphie_resultat.webp"  class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="36">
+    <img src="../Interactif/Images/Images_culture/chamanisme_resultat.webp"    class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="45">
+    <img src="../Interactif/Images/Images_culture/cinema_resultat.webp"        class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="20">
+    <img src="../Interactif/Images/Images_culture/hanbok_resultat.webp"        class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="39">
+    <img src="../Interactif/Images/Images_culture/histoire_gout_resultat.webp" class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="44">
+    <img src="../Interactif/Images/Images_culture/talchum_resultat.webp"       class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="33">
+    <img src="../Interactif/Images/Images_culture/trot_resultat.webp"          class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="56">
+    <img src="../Interactif/Images/Images_culture/Yeongdo_resultat.webp"       class="objet culture clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="40">
+
+    <!-- ======= LIEU DE VIE ======= -->
+    <img src="../Interactif/Images/ldv_place_resultat.webp"
+         class="droite clickable-transparency"
+         data-image="../Interactif/Images/Images_ldv/ldv_interieur_resultat.webp"
+         data-objets="ldv"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_ldv/architecture-urbanisme-busan_resultat.webp" class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="41">
+    <img src="../Interactif/Images/Images_ldv/hanok_resultat.webp"                        class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="51">
+    <img src="../Interactif/Images/Images_ldv/jardins-busan_resultat.webp"                class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="29">
+    <img src="../Interactif/Images/Images_ldv/marche-guide_resultat.webp"                 class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="4">
+    <img src="../Interactif/Images/Images_ldv/réfugiés-busan_resultat.webp"               class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="34">
+    <img src="../Interactif/Images/Images_ldv/village-gamcheon_resultat.webp"             class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="7">
+    <img src="../Interactif/Images/Images_ldv/yeongdo-kangkangee_resultat.webp"           class="objet ldv clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="48">
+
+    <!-- ======= SOCIAL ======= -->
+    <img src="../Interactif/Images/social_place_resultat.webp"
+         class="droite clickable-transparency"
+         data-image="../Interactif/Images/Images_social/social_zoom_resultat.webp"
+         data-objets="social"
+         data-gif="../Interactif/Animation/transition.GIF"
+         onclick="changerImage(this)">
+
+    <img src="../Interactif/Images/Images_social/adoptions_resultat.webp" class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="1">
+    <img src="../Interactif/Images/Images_social/alcool_resultat.webp"    class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="53">
+    <img src="../Interactif/Images/Images_social/beauté_resultat.webp"    class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="49">
+    <img src="../Interactif/Images/Images_social/diaspora_resultat.webp"  class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="19">
+    <img src="../Interactif/Images/Images_social/éduquer_resultat.webp"   class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="58">
+    <img src="../Interactif/Images/Images_social/glaneurs_resultat.webp"  class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="57">
+    <img src="../Interactif/Images/Images_social/plongeuses_resultat.webp" class="objet social clickable-transparency hidden" onclick="ouvrirPopup(this)" data-id="28">
+
+    <!-- GIF d'ambiance 2 (en dernier pour le z-index) -->
+    <img src="../Interactif/Animation/presqueMarchandise.GIF" class="gif-accueil gif-2 no-interaction">
 
   </div>
 
+  <!-- Hors du conteneur zoomé pour rester fixes à l'écran -->
+  <img id="gif-transition" src="" class="no-interaction hidden"
+       style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:9998;">
+  <div id="fondu-noir"
+       style="position:fixed;inset:0;background:black;opacity:0;pointer-events:none;z-index:9997;transition:opacity 0.4s ease;"></div>
 
-
+  <!-- ======= POPUP ======= -->
   <div id="overlayPopup">
-
     <div class="overlay-container">
-
       <button class="popup-close" onclick="closeOverlay()">✕</button>
-
       <div class="film-overlay">
 
         <div class="film-left">
           <img id="poster">
-
           <div class="film-tags">
             <h3>Tags</h3>
             <span class="tag">Pop-culture</span>
@@ -287,70 +182,31 @@
         </div>
 
         <div class="film-right">
-
           <h1 id="Titre"></h1>
           <h2 id="Titre_Kr"></h2>
-
           <div class="film-details">
-            <span id="Time"></span>
-            <span id="Date"></span>
+            <span id="Time"></span> • <span id="Date"></span>
           </div>
-
           <div class="film-synopsis">
             <p id="Description"></p>
           </div>
-
           <div class="film-watch">
-            <a id="watchLink" target="_blank" class="btn-watch">
-              Cliquez ici pour regarder le documentaire
-            </a>
+            <a id="watchLink" target="_blank" class="btn-watch">Cliquez ici pour regarder le documentaire</a>
           </div>
-
           <div class="film-team">
             <h3>Équipe</h3>
-
-            <ul class="team-list" id="Equipe">
-         
-            </ul>
-
+            <ul class="team-list" id="Equipe"></ul>
           </div>
-
         </div>
 
       </div>
-
     </div>
-
   </div>
 
-  <script>
-
-    //Script overlay//
-
-    function ouvrirPopup(titre, texte) {
-
-      document.getElementById("overlayPopup").style.display = "flex";
-
-      document.getElementById("popupTitle").textContent = titre;
-      document.getElementById("popupText").textContent = texte;
-
-    }
-
-    function closeOverlay() {
-
-      document.getElementById("overlayPopup").style.display = "none";
-
-      
-    }
-
-
-  </script>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <script src="../Catalogue/script.js"></script>
   <script src="script_transparence.js"></script>
   <script src="script_objets.js"></script>
-  
- 
-</body>
 
+</body>
 </html>

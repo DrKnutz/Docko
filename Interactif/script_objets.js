@@ -41,6 +41,27 @@ function ouvrirPopup(element) {
         teamList.innerHTML = item.Equipe.split(",")
             .map(m => `<li>${m.trim()}</li>`).join("");
     }
+    const tagsContainer = document.getElementById("tagsContainer");
+
+    if (tagsContainer && item.Tags) {
+
+        tagsContainer.innerHTML = "";
+
+        const tags = item.Tags.split(",");
+
+        tags.forEach(tag => {
+
+            const cleanTag = tag.trim();
+
+            if (!cleanTag) return;
+
+            const span = document.createElement("span");
+            span.className = "tag";
+            span.textContent = cleanTag;
+
+            tagsContainer.appendChild(span);
+        });
+    }
 }
 
 function closeOverlay() {

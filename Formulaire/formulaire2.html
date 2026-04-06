@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soumettre un documentaire — DocKo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style_formulaire.css">
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: "Patrick Hand", cursive;
+        background: #1a1814;
+        color: #F7EBEB;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 60px 20px;
+    }
+
+    .form-container {
+        background: #2B2927;
+        border-radius: 16px;
+        padding: 60px;
+        width: 100%;
+        max-width: 700px;
+    }
+
+    h1 {
+        color: #FCD135;
+        font-size: 32px;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        color: #aaa;
+        font-size: 15px;
+        margin-bottom: 40px;
+    }
+
+    .section-title {
+        color: #EA770B;
+        font-size: 18px;
+        margin: 36px 0 20px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #444;
+    }
+
+    .field {
+        margin-bottom: 24px;
+    }
+
+    label {
+        display: block;
+        font-size: 15px;
+        color: #FCD135;
+        margin-bottom: 4px;
+    }
+
+    label span.required {
+        color: #EA770B;
+        margin-left: 4px;
+    }
+
+    .field-hint {
+        color: #999;
+        font-size: 13px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        background: #1a1814;
+        border: 2px solid #444;
+        border-radius: 10px;
+        color: #F7EBEB;
+        font-family: "Patrick Hand", cursive;
+        font-size: 15px;
+        padding: 12px 16px;
+        transition: border-color 0.2s;
+        outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #FCD135;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    select option {
+        background: #2B2927;
+    }
+
+    .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .credits-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .equipe-auto {
+        background: #1a1814;
+        border: 2px solid #3a3530;
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-family: "Patrick Hand", cursive;
+        font-size: 14px;
+        color: #aaa;
+        min-height: 60px;
+        line-height: 1.6;
+    }
+
+    .equipe-auto.has-content {
+        color: #F7EBEB;
+    }
+
+    .btn-submit {
+        width: 100%;
+        background: #EA770B;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        padding: 16px;
+        font-family: "Patrick Hand", cursive;
+        font-size: 18px;
+        cursor: pointer;
+        margin-top: 16px;
+        transition: 0.2s;
+    }
+
+    .btn-submit:hover {
+        background: linear-gradient(135deg, #FCD135, #EA770B);
+        color: black;
+    }
+
+    .btn-submit:disabled {
+        background: #555;
+        cursor: not-allowed;
+    }
+
+    #message {
+        display: none;
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        font-size: 16px;
+        margin-top: 24px;
+    }
+
+    #message.success {
+        display: block;
+        background: #1a3a1a;
+        border: 2px solid #3a7a3a;
+        color: #7adf7a;
+    }
+
+    #message.error {
+        display: block;
+        background: #3a1a1a;
+        border: 2px solid #7a3a3a;
+        color: #df7a7a;
+    }
+
+    #already-submitted {
+        display: none;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    #already-submitted h2 {
+        color: #FCD135;
+        margin-bottom: 16px;
+    }
+
+    #already-submitted p {
+        color: #aaa;
+        font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+        .form-container {
+            padding: 30px 20px;
+        }
+
+        .field-row,
+        .credits-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<body>
+    <div class="form-container">
+        <h1>Soumettre un documentaire</h1>
+        <p class="subtitle"> Merci de bien relire toutes vos informations avant de soumettre et de ne pas soumettre
+            plusieurs fois le même documentaire. Toutes modifications une fois soumis demanderont l'intervention d'un
+            professeur .</p>
+
+        <div id="already-submitted">
+            <h2>Déjà soumis ✓</h2>
+            <p>Vous avez déjà complété le formulaire.<br>Merci pour votre contribution !</p>
+        </div>
+
+        <form id="docForm">
+
+            <!-- IDENTIFICATION -->
+            <p class="section-title">Identification</p>
+
+            <div class="field">
+                <label>Catégorie pour la page catalogue <span class="required">*</span></label>
+                <p class="field-hint">La thématique du documentaire dans notre catalogue DocKo.</p>
+                <select name="Categorie_catalogue" required>
+                    <option value="" disabled selected>Choisir une catégorie</option>
+                    <option value="Corée déchirée">Corée déchirée</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Influence étrangère">Influence étrangère</option>
+                    <option value="Lieu de vie">Lieu de vie</option>
+                    <option value="Lutte pro-démocratie">Lutte pro-démocratie</option>
+                    <option value="Société">Société</option>
+                    <option value="Symboles patriotiques">Symboles patriotiques</option>
+                    <option value="Traumatismes">Traumatismes</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Catégorie EIDR <span class="required">*</span></label>
+                <p class="field-hint">La thématique du documentaire dans notre catalogue interactif.</p>
+                <select name="Categorie_EIDR" required>
+                    <option value="" disabled selected>Choisir une catégorie</option>
+                    <option value="Culture">Culture</option>
+                    <option value="Gwangju">Gwangju</option>
+                    <option value="Influence_etrangere">Influence étrangère</option>
+                    <option value="Lieu_de_vie">Lieu de vie</option>
+                    <option value="NordSud">Nord-Sud</option>
+                    <option value="Politique">Politique</option>
+                    <option value="Social">Social</option>
+                    <option value="Roman_national">Roman national</option>
+
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Affiche (URL) <span class="required">*</span></label>
+                <p class="field-hint">Lien direct vers l'image fournie par votre groupe (JPG, PNG). L'URL doit être
+                    accessible publiquement.</p>
+                <input type="url" name="poster" required placeholder="https://...">
+            </div>
+
+            <!-- TITRE -->
+            <p class="section-title">Titre</p>
+
+            <div class="field">
+                <label>Titre <span class="required">*</span></label>
+                <p class="field-hint">Le titre officiel du documentaire tel qu'il apparaît sur l'œuvre.</p>
+                <input type="text" name="Titre" required placeholder="Titre du documentaire">
+            </div>
+
+            <div class="field">
+                <label>Titre en coréen</label>
+                <p class="field-hint">Le titre original en hangul, si disponible.</p>
+                <input type="text" name="Titre_Kr" placeholder="제목">
+            </div>
+
+            <!-- INFOS GÉNÉRALES -->
+            <p class="section-title">Informations générales</p>
+
+            <div class="field-row">
+                <div class="field">
+                    <label>Année <span class="required">*</span></label>
+                    <p class="field-hint">Année de sortie.</p>
+                    <input type="number" name="Date" required placeholder="2023" min="2026" max="2099">
+                </div>
+                <div class="field">
+                    <label>Durée <span class="required">*</span></label>
+                    <p class="field-hint">Temps du documentaire complet (format HH:MM:SS).</p>
+                    <input type="text" name="Time" required placeholder="1h23">
+                </div>
+            </div>
+
+            <!-- CRÉDITS -->
+            <p class="section-title">Membres de l'équipe (crédits)</p>
+            <p class="field-hint" style="margin-bottom: 16px;">Renseignez vos membres d'équipes. Le champ "Équipe" se
+                met à
+                jour automatiquement.</p>
+
+            <div class="credits-grid">
+                <div class="field"><input type="text" name="credit_1" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_2" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_3" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_4" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_5" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_6" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_7" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_8" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_9" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_10" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_11" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_12" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_13" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+                <div class="field"><input type="text" name="credit_14" class="credit-input" placeholder="Nom, Prénom">
+                </div>
+            </div>
+
+            <!-- ÉQUIPE AUTO -->
+            <div class="field" style="margin-top: 8px;">
+                <label>Équipe <span style="color:#aaa; font-size:13px; font-weight:normal;">(généré
+                        automatiquement)</span></label>
+                <p class="field-hint">Ce champ se remplit seul à partir des crédits ci-dessus. Il recense l'ensemble des
+                    membres de votre équipe.</p>
+                <div class="equipe-auto" id="equipePreview">—</div>
+                <input type="hidden" name="Equipe" id="equipeHidden">
+            </div>
+
+            <!-- DESCRIPTION -->
+            <p class="section-title">Description & accès</p>
+
+            <div class="field">
+                <label>Description <span class="required">*</span></label>
+                <p class="field-hint">Synopsis ou résumé du documentaire. Quelques phrases précises pour donner envie de
+                    voir votre documentaire.</p>
+                <textarea name="Description" required placeholder="Ce documentaire explore..."></textarea>
+            </div>
+
+            <div class="field">
+                <label>Lien de visionnage <span class="required">*</span></label>
+                <p class="field-hint">URL de votre site interactif.
+                    <input type="url" name="url" required placeholder="https://...">
+            </div>
+
+            <!-- TAGS -->
+            <div class="field">
+                <label>Tags</label>
+                <p class="field-hint">Mots-clés pour faciliter la recherche, séparés par des virgules (ex : séoul,
+                    diaspora, années 80). N'hésitez pas à vous inspirer des tags déjà existants. </p>
+                <input type="text" name="Tags" placeholder="séoul, diaspora, années 80">
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Soumettre votre documentaire. </button>
+            <div id="message"></div>
+        </form>
+
+        <!-- BOUTON DE TEST — à supprimer en production -->
+        <div style="text-align:center; margin-top: 20px;">
+            <button onclick="localStorage.removeItem('docko_form_submitted'); location.reload();"
+                style="background:none; border:1px dashed #555; color:#777; border-radius:8px; padding:8px 16px; font-size:13px; cursor:pointer; font-family:inherit;">
+                🔧 [TEST] Réinitialiser la protection doublon
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzm7A6awBWSlGN7AIdwHfeZ9uHmVclfENFJCeuwOhJoWBJtcDSLEw9jn4bUEtaJKTdn/exec"
+        const STORAGE_KEY = "docko_form_submitted";
+
+        // Déjà soumis ?
+        if (localStorage.getItem(STORAGE_KEY)) {
+            document.getElementById("docForm").style.display = "none";
+            document.getElementById("already-submitted").style.display = "block";
+        }
+
+        // Labels pour l'auto-génération Equipe (conservés pour référence interne)
+        const creditLabels = {
+            credit_1: "Réalisateur·ice",
+            credit_2: "Producteur·ice",
+            credit_3: "Scénariste",
+            credit_4: "Dir. photo",
+            credit_5: "Monteur·euse",
+            credit_6: "Compositeur·ice",
+            credit_7: "Son",
+            credit_8: "Chef opérateur·ice",
+            credit_9: "Narrateur·ice",
+            credit_10: "Traducteur·ice",
+            credit_11: "Graphiste",
+            credit_12: "Coloriste",
+            credit_13: "Diffusion",
+            credit_14: "Autre"
+        };
+
+        function formatName(raw) {
+            // "Dupont, Jean" → "Dupont Jean"
+            return raw.replace(/,\s*/g, " ").trim();
+        }
+
+        function updateEquipe() {
+            const parts = [];
+            document.querySelectorAll(".credit-input").forEach(input => {
+                if (input.value.trim()) parts.push(formatName(input.value));
+            });
+            const preview = document.getElementById("equipePreview");
+            const hidden = document.getElementById("equipeHidden");
+            if (parts.length > 0) {
+                const joined = parts.join(", ");
+                preview.textContent = joined;
+                preview.classList.add("has-content");
+                hidden.value = joined;
+            } else {
+                preview.textContent = "—";
+                preview.classList.remove("has-content");
+                hidden.value = "";
+            }
+        }
+
+        document.querySelectorAll(".credit-input").forEach(input => {
+            input.addEventListener("input", updateEquipe);
+        });
+
+        // Soumission
+        document.getElementById("docForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById("submitBtn");
+            const msg = document.getElementById("message");
+
+            btn.disabled = true;
+            btn.textContent = "Envoi en cours...";
+            msg.className = "";
+            msg.style.display = "none";
+
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                // Exclure les champs credit_1..14 individuels, seul Equipe est envoyé
+                if (!key.startsWith("credit_")) {
+                    data[key] = value.trim();
+                }
+            });;
+
+            try {
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: "POST",
+                    body: new URLSearchParams(data)
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.setItem(STORAGE_KEY, "true");
+                    msg.className = "success";
+                    msg.textContent = "✓ Documentaire soumis avec succès ! Merci pour votre contribution.";
+                    setTimeout(() => {
+                        document.getElementById("docForm").style.display = "none";
+                        document.getElementById("already-submitted").style.display = "block";
+                    }, 2000);
+                } else {
+                    throw new Error("Réponse inattendue");
+                }
+            } catch (err) {
+                console.error(err);
+                msg.className = "error";
+                msg.style.display = "block";
+                msg.textContent = "✗ Une erreur est survenue. Vérifiez votre connexion et réessayez.";
+                btn.disabled = false;
+                btn.textContent = "Soumettre votre documentaire.";
+
+            }
+
+        });
+    </script>
+</body>
+
+
+
+</html>

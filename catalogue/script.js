@@ -150,6 +150,32 @@ Papa.parse(csvUrl, {
                     teamList.appendChild(li);
                 });
             }
+            const tagsContainer = document.getElementById("tagsContainer");
+
+if(tagsContainer && item.Tags){
+
+    tagsContainer.innerHTML = "";
+
+    const tags = item.Tags.split(",");
+
+    tags.forEach(tag => {
+
+        const cleanTag = tag.trim();
+
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = cleanTag;
+
+        // 🔥 rendre cliquable
+        span.style.cursor = "pointer";
+
+        span.addEventListener("click", () => {
+            window.location.href = "tags.html?tag=" + encodeURIComponent(cleanTag);
+        });
+
+        tagsContainer.appendChild(span);
+    });
+}
 
             // IMAGE POSTER
             const poster = document.getElementById("poster");

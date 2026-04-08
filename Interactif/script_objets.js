@@ -132,7 +132,16 @@ function retour() {
     document.querySelector(".gif-permanent").classList.remove("hidden");
 
     demarrerGifs();
+
+    mettreAJourBoutonRetour();
 }
+
+function mettreAJourBoutonRetour() {
+    document.getElementById("retour").disabled = historique.length === 0;
+}
+
+// Appelle-la au chargement
+mettreAJourBoutonRetour();
 
 // ==============================
 // TRANSITIONS
@@ -149,6 +158,7 @@ function changerImage(element) {
 
     if (!imagePrincipale.src.includes("zoom")) {
         historique.push(imagePrincipale.src);
+        mettreAJourBoutonRetour();
         document.querySelector(".gif-permanent").classList.add("hidden");
     }
 
@@ -228,7 +238,7 @@ function changerImage(element) {
         gifTransition.classList.remove("hidden");
         new Image().src = imagefinale;
 
-        fonduNoir(1600, () => {
+        fonduNoir(1000, () => {
             finZoom();
             gifTransition.classList.add("hidden");
             gifTransition.src = "";
@@ -249,3 +259,5 @@ function changerImage(element) {
         }
     }
 }
+
+

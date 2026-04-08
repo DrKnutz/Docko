@@ -201,7 +201,6 @@ body:not(:has(#loader)) .doc-landing-page {
 
 .badge {
     align-self: flex-start;
-    background-color: rgba(234,119,11,0.85);
     color: #F7EBEB;
     padding: 4px 10px;
     font-size: 10px;
@@ -209,6 +208,16 @@ body:not(:has(#loader)) .doc-landing-page {
     text-transform: uppercase;
     border-radius: 20px;
     font-weight: 600;
+}
+
+.badge[data-badge="En vedette"] {
+    background: rgba(234,119,11,0.85);
+}
+.badge[data-badge="Dernières sorties"] {
+    background: red;
+}
+.badge[data-badge="Coup de coeur"] {
+    background: rgb(234, 78, 104);
 }
 
 .info h3 {

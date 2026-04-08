@@ -60,7 +60,7 @@ Papa.parse(csvUrl, {
             badge.className = "badge";
             badge.textContent = item.Badge.trim();
 
-            // 🔥 utile pour le style dynamique
+            // utile pour le style dynamique
             badge.setAttribute("data-badge", item.Badge.trim());
 
             overlay.prepend(badge);
@@ -70,71 +70,50 @@ Papa.parse(csvUrl, {
             });
 
         }
-        // L'ANIMATION GSAP (uniquement à l'ouverture du catalogue)
-        // verification GSAP est bien chargé sur la page
-        if (typeof gsap !== "undefined") {
+        // L'ANIMATION GSAP 
+        // On s'assure que GSAP est bien chargé sur la page
+            if (typeof gsap !== "undefined") {
+                const tl = gsap.timeline();
 
-            // verification si l'animation a déjà été jouée pendant cette visite
-            const animationDejaJouee = sessionStorage.getItem("introDocKoJouee");
-
-            if (animationDejaJouee) {
-                // SI OUI : On supprime le loader instantanément et on affiche le site
-                const loader = document.getElementById("loader");
-                const loaderLogo = document.querySelector(".loader-logo");
-                if (loader) loader.style.display = "none";
-                if (loaderLogo) loaderLogo.style.display = "none";
-                // On remet l'opacité à 1 pour le menu et la page, sans durée d'animation
-                gsap.set(["#main-header", ".doc-landing-page"], { opacity: 1 });
-
-            } else {
-                // SI NON : C'est la première visite, on joue l'animation complète
-                const tl = gsap.timeline({
-                    // À la toute fin de l'animation, on enregistre la variable dans la mémoire du navigateur
-                    onComplete: function () {
-                        sessionStorage.setItem("introDocKoJouee", "true");
-                    }
-                });
-
-                // 1. Apparition du logo
-                tl.from(".loader-logo", {
-                    duration: 1.2,
-                    scale: 0.8,
+                // 1. Apparition douce du titre DOC'KO au centre
+                tl.from(".loader-title", {
+                    duration: 1,
+                    scale: 1.2,
                     opacity: 0,
                     ease: "power3.out"
                 })
-                    // 2. Le fond noir glisse vers le haut pour révéler la page
-                    .to("#loader", {
-                        duration: 0.8,
-                        yPercent: -100,
-                        ease: "power4.inOut",
-                        delay: 0.6
-                    })
-                    // 3. Le menu (header) apparaît
-                    .to("#main-header", {
-                        duration: 0.6,
-                        opacity: 1,
-                        y: 0,
-                        ease: "power2.out"
-                    }, "-=0.3")
-                    // 4. Les sections s'affichent
-                    .to(".doc-landing-page", {
-                        duration: 0.1,
-                        opacity: 1
-                    }, "-=0.4")
-                    // 5. L'effet de cascade (stagger) sur les documentaires
-                    .from(cards, {
-                        duration: 0.8,
-                        y: 60,
-                        opacity: 0,
-                        stagger: 0.1,
-                        ease: "back.out(1.2)"
-                    }, "-=0.2");
+                // 2. Le fond noir glisse vers le haut pour révéler la page
+                .to("#loader", {
+                    duration: 0.8,
+                    yPercent: -100, // Le fait monter hors de l'écran
+                    ease: "power4.inOut",
+                    delay: 0.6 // On laisse le titre affiché un peu plus d'une demi-seconde
+                })
+                // 3. Le menu (header) apparaît
+                .to("#main-header", {
+                    duration: 0.6,
+                    opacity: 1,
+                    y: 0,
+                    ease: "power2.out"
+                }, "-=0.3") // Ce "-=0.3" permet de démarrer l'action avant que la précédente soit totalement finie
+                // 4. Les sections s'affichent
+                .to(".doc-landing-page", {
+                    duration: 0.1,
+                    opacity: 1
+                }, "-=0.4")
+                // 5. L'effet de cascade (stagger) sur tes documentaires !
+                .from(cards, {
+                    duration: 0.8,
+                    y: 60, // Les cartes viennent du bas (60px)
+                    opacity: 0,
+                    stagger: 0.1, // C'est CA qui crée l'effet d'apparition une par une !
+                    ease: "back.out(1.2)" // Petit effet de rebond léger à l'arrivée
+            }, "-=0.2");
             }
-        }
 
-        // PAGE FILM
+    // PAGE FILM
 
-        if (itemId) {
+    if (itemId) {
 
             const item = data.find(d => d.ID && d.ID.trim() === itemId);
 
@@ -180,7 +159,7 @@ Papa.parse(csvUrl, {
                     span.className = "tag";
                     span.textContent = cleanTag;
 
-                    // 🔥 rendre cliquable
+                    // rendre cliquable
                     span.style.cursor = "pointer";
 
                     span.addEventListener("click", () => {

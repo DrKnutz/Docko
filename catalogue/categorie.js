@@ -14,64 +14,79 @@ Papa.parse(csvUrl, {
         data.sort((a,b) => b.Date - a.Date);
 
 // TITRE H1
-         const titrePage = document.getElementById("categoryTitle");
-         if (titrePage) {
-             if (catParam) {
-                 titrePage.textContent = catParam; 
-             } else {
-                 titrePage.textContent = "Toutes les catégories";
-             }
+        const titrePage = document.getElementById("categoryTitle");
+        if (titrePage) {
+            if (catParam) {
+                titrePage.textContent = catParam; 
+            } else {
+                titrePage.textContent = "Toutes les catégories";
+            }
         }
 
+// CONTENEUR
+        const container = document.querySelector(".catalogue");
+
 // Affichage CATALOGUE
+        data.forEach(item => {
 
-            data.forEach(item => {
-                if(catParam==item.Categorie_EIDR || catParam==null){
+            if(catParam == item.Catégorie_catalogue || catParam == null){
 
-            document.querySelector(".catalogue").innerHTML+=`<div class="doc-card" data-id="${item.ID}">
-    <a>
-        <img>
-    <div class="overlay">
-                        <span class="badge">En vedette</span>
-                        <div class="info">
-                            <h3 class="Titre"></h3>
-                            <p class="Category"></p>
+                container.innerHTML += `
+                <div class="doc-card" data-id="${item.ID}">
+                    <a>
+                        <img>
+                        <div class="overlay">
+                            <div class="info">
+                                <h3 class="Titre"></h3>
+                                <p class="Category"></p>
+                            </div>
                         </div>
-                    </div>
                     </a>
-</div>`
+                </div>
+                `;
 
-// image capsule
-                var id = item.ID;
-                var card = document.querySelector(`[data-id="${item.ID}"]`);
+                // récupération de la card
+                const card = container.querySelector(`[data-id="${item.ID}"]`);
+
+                // image
                 const img = card.querySelector("img");
                 if(img && item.poster){
-                    img.src = "../posters/"+ id + ".jpg";
+                    img.src = "../posters/" + item.ID + ".jpg";
                 }
 
+                // titre
                 const title = card.querySelector(".Titre");
                 if(title && item.Titre){
                     title.textContent = item.Titre;
                 }
 
+                // catégorie
                 const cat = card.querySelector(".Category");
-                if(cat && item.Category){
-                    cat.textContent = item.Category;
+                if(cat && item.Catégorie_catalogue){
+                    cat.textContent = item.Catégorie_catalogue;
                 }
 
-// lien vers page film
+                // lien
                 const link = card.querySelector("a");
                 if(link){
                     link.href = "film.html?id=" + item.ID;
                 }
-            //             // afficher le titre de la catégorie
-            // const cattitle = document.getElementById("categoryTitle");
-            //     if(cattitle && item.Category){
-            //         cattitle.textContent = item.Category;
-            //     }
-            }});
 
+                // ✅ BADGE DYNAMIQUE (AJOUTÉ ICI)
+                const overlay = card.querySelector(".overlay");
+
+                if (overlay && item.Badge && item.Badge.trim() !== "") {
+
+                    const badge = document.createElement("span");
+                    badge.className = "badge";
+                    badge.textContent = item.Badge.trim();
+
+                    // pour ton CSS dynamique
+                    badge.setAttribute("data-badge", item.Badge.trim());
+
+                    overlay.prepend(badge);
+                }
             }
-
-        }
-);  
+        });
+    }
+});

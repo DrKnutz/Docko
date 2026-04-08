@@ -222,6 +222,10 @@ body:not(:has(#loader)) .doc-landing-page {
     color: #FCD135;
 }
 
+.info {
+    margin-top: auto;
+}
+
 /* PRESENTATION */
 
 .presentation {

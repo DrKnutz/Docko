@@ -43,8 +43,8 @@ Papa.parse(csvUrl, {
                 }
 
                 const cat = card.querySelector(".Category");
-                if (cat && item.Category) {
-                    cat.textContent = item.Category;
+                if (cat && item.Catégorie_catalogue) {
+                    cat.textContent = item.Catégorie_catalogue;
                 }
 
                 // lien vers page film
@@ -52,6 +52,20 @@ Papa.parse(csvUrl, {
                 if (link) {
                     link.href = "film.html?id=" + item.ID;
                 }
+                const overlay = card.querySelector(".overlay");
+
+        if (overlay && item.Badge && item.Badge.trim() !== "") {
+
+            const badge = document.createElement("span");
+            badge.className = "badge";
+            badge.textContent = item.Badge.trim();
+
+            // 🔥 utile pour le style dynamique
+            badge.setAttribute("data-badge", item.Badge.trim());
+
+            overlay.prepend(badge);
+        }
+
 
             });
 
@@ -195,7 +209,10 @@ Papa.parse(csvUrl, {
 
         if (catParam) {
 
-            const filmsCategorie = data.filter(film => film.Category === catParam);
+            const filmsCategorie = data.filter(film => 
+    film.Catégorie_catalogue &&
+    film.Catégorie_catalogue.trim().toLowerCase() === catParam.trim().toLowerCase()
+);
 
             const container = document.querySelector(".catalogue");
 
@@ -207,17 +224,19 @@ Papa.parse(csvUrl, {
                 card.className = "doc-card";
 
                 card.innerHTML = `
-                        <a href="film.html?id=${item.ID}">
-                                   aria-label="Voir le documentaire : ${item.Titre}, catégorie ${item.Category}">
-                            <img src="../posters/${item.ID}.jpg" alt="Affiche du documentaire : ${item.Titre}">
-                            <div class="overlay" aria-hidden="true">
-                                <div class="info">
-                                    <h3 class="Titre">${item.Titre}</h3>
-                                    <p class="Category">${item.Category}</p>
-                                </div>
-                            </div>
-                        </a>
-                    `;
+                         <a href="film.html?id=${item.ID}">
+        <img src="../posters/${item.ID}.jpg" alt="${item.Titre}">
+        <div class="overlay">
+
+            ${item.Badge ? `<span class="badge">${item.Badge}</span>` : ""}
+
+            <div class="info">
+                <h3 class="Titre">${item.Titre}</h3>
+                <p class="Category">${item.Catégorie_catalogue}</p>
+            </div>
+        </div>
+    </a>
+`;
 
                 container.appendChild(card);
             };

@@ -35,7 +35,7 @@ Papa.parse(csvUrl, {
                         <div class="overlay">
                             <div class="info">
                                 <h3>${item.Titre}</h3>
-                                <p>${item.Category}</p>
+                                <p>${item.Catégorie_catalogue}</p>
                             </div>
                         </div>
                     </a>

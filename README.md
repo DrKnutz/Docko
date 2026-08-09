@@ -9,3 +9,4 @@ Docko est un site web consacré aux documentaires interactifs réalisés depuis 
 * UX Design : Moubine Sekalaoudine
 * Éditorialisation : Eliott Leclerc
 * Développeur : Nolan Robic
+* Illustratrice : Jaeden Duong
